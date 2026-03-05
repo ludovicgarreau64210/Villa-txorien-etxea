@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400">
+  <rect width="700" height="400" fill="#F5E6D0"/>
+  <rect x="0" y="280" width="700" height="120" fill="#D4956A"/>
+  <!-- pain baguettes -->
+  <ellipse cx="200" cy="230" rx="120" ry="28" fill="#C68B4A" transform="rotate(-15 200 230)"/>
+  <ellipse cx="200" cy="224" rx="120" ry="22" fill="#D4A56A" transform="rotate(-15 200 230)"/>
+  <!-- lignes baguette -->
+  <line x1="140" y1="195" x2="260" y2="218" stroke="#B8732E" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="155" y1="200" x2="265" y2="222" stroke="#B8732E" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- croissant -->
+  <path d="M420 180 Q460 130 500 180 Q480 200 450 195 Q430 210 420 180Z" fill="#D4A040"/>
+  <path d="M428 178 Q462 135 498 178" stroke="#B8872E" stroke-width="2" fill="none"/>
+  <!-- pain rond -->
+  <ellipse cx="540" cy="240" rx="70" ry="55" fill="#C68B4A"/>
+  <ellipse cx="540" cy="232" rx="70" ry="50" fill="#D4A56A"/>
+  <line x1="510" y1="210" x2="570" y2="210" stroke="#B8732E" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="505" y1="222" x2="575" y2="222" stroke="#B8732E" stroke-width="2" stroke-linecap="round"/>
+  <!-- vitrine -->
+  <rect x="80" y="300" width="540" height="4" fill="#A05030"/>
+  <text x="350" y="370" font-family="Georgia, serif" font-size="22" fill="rgba(255,255,255,0.85)" text-anchor="middle" letter-spacing="4">BOULANGERIE ARTISANALE</text>
+  <text x="350" y="340" font-family="Georgia, serif" font-size="32" fill="white" text-anchor="middle" font-style="italic">La Ronde des Pains</text>
+</svg>

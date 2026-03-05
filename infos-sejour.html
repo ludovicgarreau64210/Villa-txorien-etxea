@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Espace hôtes · Txorien Etxea</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;1,300&family=DM+Mono:wght@300;400&family=Libre+Franklin:wght@300;400&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:'Libre Franklin',sans-serif;
+      background:#0C1A10;
+      min-height:100vh;
+      display:flex;align-items:center;justify-content:center;
+    }
+    .wrap{
+      display:flex;flex-direction:column;align-items:center;
+      gap:2rem;width:320px;padding:2rem;
+    }
+    .logo{
+      font-family:'Cormorant',serif;
+      text-align:center;
+    }
+    .logo strong{display:block;font-size:2.2rem;font-weight:300;color:#fff;letter-spacing:.08em}
+    .logo span{font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.35)}
+    .lock-icon{font-size:2rem;margin-bottom:-.5rem}
+    .label{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.35)}
+    input[type=password]{
+      width:100%;padding:.9rem 1.2rem;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.15);
+      color:#fff;font-family:'DM Mono',monospace;font-size:1rem;
+      letter-spacing:.08em;text-align:center;outline:none;
+      transition:border-color .2s,background .2s;
+    }
+    input[type=password]:focus{border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.1)}
+    input[type=password]::placeholder{color:rgba(255,255,255,.2)}
+    button{
+      width:100%;padding:.85rem;
+      background:#2E6B2A;border:none;
+      color:#fff;font-family:'Libre Franklin',sans-serif;
+      font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
+      cursor:pointer;transition:background .2s;
+    }
+    button:hover{background:#3d8a38}
+    .error{font-size:.75rem;color:#FF6B6B;letter-spacing:.05em;min-height:1.2rem;text-align:center}
+    .hint{font-size:.58rem;color:rgba(255,255,255,.18);letter-spacing:.1em;text-align:center;margin-top:.5rem}
+    a.back{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.2);text-decoration:none;transition:color .2s}
+    a.back:hover{color:rgba(255,255,255,.5)}
+  </style>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+</head>
+<body>
+<div class="wrap">
+  <div class="logo">
+    <strong>Txorien Etxea</strong>
+    <span>Espace hôtes · Accès privé</span>
+  </div>
+  <div class="lock-icon">🔒</div>
+  <form method="POST" action="/unlock" style="width:100%;display:flex;flex-direction:column;gap:.8rem">
+    <div class="label">Mot de passe</div>
+    <input type="password" name="password" placeholder="••••••••••••" autocomplete="current-password" autofocus/>
+    <button type="submit">Accéder</button>
+    <div class="error">
+      <!-- Erreur côté serveur si ?error=1 -->
+    </div>
+    <div class="hint">Page réservée aux hôtes · Txorien Etxea</div>
+  </form>
+  <a href="index.html" class="back">← Retour à la villa</a>
+</div>
+<script>
+  // Afficher message d'erreur si renvoyé par le serveur
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('error')) {
+    document.querySelector('.error').textContent = 'Mot de passe incorrect';
+  }
+</script>
+</body>
+</html>

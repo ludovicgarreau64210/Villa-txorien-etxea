@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Commerces à Guéthary · Txorien Etxea</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Libre+Franklin:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    
+    :root{--blanc:#FEFCF8;--creme:#EEF4F7;--beige:#D6E6EF;--sable:#A8C8D8;--terre:#4A7A92;--brun:#1A4A5E;--luzien:#2E6B8A;--luzien-clair:#4A8FAD;--luzien-fonce:#1A4A5E;--luzien-pale:#D6E6EF;--luzien-ultra:#EEF4F7;--encre:#0C2330}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Libre Franklin',sans-serif;background:var(--blanc);color:var(--brun);overflow-x:hidden}
+    img{display:block;max-width:100%;height:auto}
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:1.1rem 2.5rem;display:flex;align-items:center;justify-content:space-between;background:rgba(254,252,248,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--luzien-pale);box-shadow:0 2px 20px rgba(30,95,122,.07)}
+    .logo{font-family:'Cormorant',serif;font-size:1.05rem;font-weight:400;letter-spacing:.05em;color:var(--luzien-fonce);text-decoration:none;line-height:1.25}
+    .logo small{display:block;font-family:'Libre Franklin',sans-serif;font-size:.56rem;font-weight:300;letter-spacing:.2em;text-transform:uppercase;opacity:.5;margin-top:2px}
+    .nav-links{list-style:none;display:flex;gap:1.5rem;align-items:center}
+    .nav-links a{font-size:.63rem;font-weight:400;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;color:var(--terre);transition:color .3s}
+    .nav-links a:hover,.nav-links a.active{color:var(--luzien)}
+    .wrap{max-width:1100px;margin:0 auto;padding:0 2.5rem}
+    .ey{display:flex;align-items:center;gap:.8rem;font-size:.62rem;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:var(--luzien);margin-bottom:.8rem}
+    .ey::before{content:'';width:20px;height:1px;background:var(--sable)}
+    h1.t{font-family:'Cormorant',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:300;line-height:1.15;color:var(--brun)}
+    h1.t em{font-style:italic;color:var(--luzien)}
+    .bod{font-size:.88rem;font-weight:300;line-height:1.95;color:var(--terre)}
+    footer{background:var(--encre);padding:1.8rem 2.5rem;display:flex;justify-content:space-between;align-items:center}
+    .fl{font-family:'Cormorant',serif;font-size:1rem;font-style:italic;font-weight:300;color:rgba(255,255,255,.4)}
+    .fr{font-size:.6rem;color:rgba(255,255,255,.2);letter-spacing:.12em;text-align:right;line-height:1.8}
+    .rv{opacity:0;transform:translateY(18px);transition:opacity .7s,transform .7s}
+    .rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}
+    .rv.in{opacity:1;transform:none}
+    @media(max-width:640px){.wrap{padding:0 1.2rem}footer{flex-direction:column;gap:.6rem;text-align:center}}
+
+
+    .page-hero{
+      padding:8rem 0 4rem;
+      background:var(--luzien-fonce);
+      position:relative;overflow:hidden;
+    }
+    .page-hero .ey{color:rgba(255,255,255,.35)}
+    .page-hero .ey::before{background:rgba(255,255,255,.2)}
+    .page-hero h1.t{color:#fff}
+    .page-hero h1.t em{color:var(--luzien-clair)}
+    .page-hero .bod{color:rgba(255,255,255,.5);max-width:520px;margin-top:1rem}
+    .page-hero-body{position:relative;z-index:1}
+
+    /* CHEMIN SECTION */
+    .chemin-section{
+      background:var(--luzien-ultra);
+      padding:4.5rem 0;
+    }
+    .chemin-layout{
+      display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;
+    }
+    .chemin-maps{
+      display:grid;grid-template-columns:1fr 1fr;gap:6px;
+      align-items:stretch;
+    }
+    .chemin-map-img{
+      overflow:hidden;
+      border:1px solid var(--beige);
+      border-radius:10px;
+      height:340px;
+    }
+    .chemin-map-img img{
+      width:100%;height:100%;object-fit:cover;
+      transition:transform .5s;
+    }
+    .chemin-map-img:hover img{transform:scale(1.03)}
+    .chemin-label{
+      font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;
+      color:var(--terre);margin-top:.5rem;
+      display:flex;align-items:center;gap:.4rem;
+    }
+    .walk-badge{
+      display:inline-flex;align-items:center;gap:.5rem;
+      margin-top:1.4rem;
+      padding:.6rem 1.1rem;
+      background:var(--luzien);color:#fff;
+      font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+    }
+    .walk-badge::before{content:'🚶';font-size:.9rem}
+
+    /* COMMERCES */
+    .commerces-section{padding:5rem 0 6rem}
+    .commerce-card{
+      display:grid;grid-template-columns:300px 1fr;
+      border-bottom:1px solid var(--beige);
+      overflow:hidden;
+      transition:background .3s;
+    }
+    .commerce-card:hover{background:var(--luzien-ultra)}
+    .commerce-card.reverse{grid-template-columns:1fr 300px}
+    .commerce-img{
+      height:240px;overflow:hidden;position:relative;
+      background:var(--luzien-pale);
+    }
+    .commerce-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+    .commerce-card:hover .commerce-img img{transform:scale(1.04)}
+    .commerce-cat{
+      position:absolute;top:.7rem;left:.7rem;
+      background:var(--luzien-fonce);color:#fff;
+      font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;
+      padding:.22rem .55rem;
+    }
+    .commerce-body{
+      padding:2.2rem 2.5rem;
+      display:flex;flex-direction:column;justify-content:center;
+    }
+    .commerce-emoji{font-size:1.3rem;margin-bottom:.5rem}
+    .commerce-name{font-family:'Cormorant',serif;font-size:1.5rem;font-weight:400;color:var(--brun);margin-bottom:.3rem}
+    .commerce-loc{font-size:.63rem;letter-spacing:.13em;text-transform:uppercase;color:var(--sable);margin-bottom:.9rem;display:flex;align-items:center;gap:.4rem}
+    .commerce-loc::before{content:'📍';font-size:.72rem}
+    .commerce-desc{font-size:.83rem;font-weight:300;line-height:1.9;color:var(--terre)}
+    .commerce-link{
+      display:inline-flex;align-items:center;gap:.5rem;
+      margin-top:1rem;
+      font-size:.67rem;letter-spacing:.12em;text-transform:uppercase;
+      color:var(--luzien);text-decoration:none;
+      border-bottom:1px solid var(--luzien-pale);
+      padding-bottom:.2rem;
+      transition:border-color .2s,color .2s;
+      width:fit-content;
+    }
+    .commerce-link:hover{color:var(--luzien-clair);border-color:var(--luzien-clair)}
+    .commerce-link::after{content:'→';font-size:.8rem}
+
+    /* MORE MAP CTA */
+    .more-map{
+      background:var(--luzien-fonce);
+      padding:4rem 0;
+      text-align:center;
+    }
+    .more-map h2{font-family:'Cormorant',serif;font-size:1.8rem;font-weight:300;color:#fff;margin-bottom:.8rem}
+    .more-map p{font-size:.85rem;color:rgba(255,255,255,.45);margin-bottom:1.8rem}
+    .map-btn{
+      display:inline-flex;align-items:center;gap:.7rem;
+      padding:.9rem 2rem;
+      background:rgba(255,255,255,.1);
+      border:1px solid rgba(255,255,255,.2);
+      color:#fff;text-decoration:none;
+      font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;
+      transition:all .25s;
+    }
+    .map-btn:hover{background:rgba(255,255,255,.2)}
+    .map-btn::before{content:'🗺️';font-size:1rem}
+
+    @media(max-width:760px){
+      .commerce-card,.commerce-card.reverse{grid-template-columns:1fr;grid-template-rows:200px auto}
+      .commerce-card.reverse .commerce-img{order:-1}
+      .commerce-body{padding:1.5rem}
+      .chemin-layout{grid-template-columns:1fr;gap:2.5rem}
+    }
+  </style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Villa Txorien Etxea<small>Guéthary · Pays basque</small></a>
+  <ul class="nav-links">
+    <li><a href="index.html">La villa</a></li>
+    <li><a href="restos-guethary.html">Restaurants</a></li>
+    <li><a href="commerces-guethary.html" class="active">Commerces</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="wrap page-hero-body">
+    <div class="ey">À 5 min à pied</div>
+    <h1 class="t">Commerces<br/><em>de première nécessité</em></h1>
+    <p class="bod">Boulangerie, supérette, boutiques — tout se trouve à 5 minutes à pied grâce au petit chemin discret qui longe le Chemin de la Laiterie.</p>
+  </div>
+</div>
+
+<!-- LE CHEMIN -->
+<section class="chemin-section">
+  <div class="wrap">
+    <div class="chemin-layout">
+      <div class="rv">
+        <div class="ey">Le petit chemin</div>
+        <h1 class="t" style="font-size:clamp(1.6rem,2.8vw,2.3rem)">Un passage discret<br/><em>pour tout avoir à pied</em></h1>
+        <p class="bod" style="margin-top:1rem">Il existe un petit passage qui relie directement la villa à l'Avenue de Guétaria — là où se trouvent la boulangerie, le Spar et les boutiques du village. Pas besoin de voiture pour les courses du matin !</p>
+        <div class="walk-badge">5 min à pied · Ronde des Pains &amp; Spar</div>
+      </div>
+      <div class="rv d1">
+        <div class="chemin-maps">
+          <div class="chemin-map-img">
+            <div id="leaflet-map" style="width:100%;height:100%"></div>
+          </div>
+          <div class="chemin-map-img">
+            <img src="images/image_73.jpg" alt="Rue Google Street View" loading="lazy"/>
+          </div>
+        </div>
+        <div style="display:flex;gap:1.5rem;margin-top:.5rem">
+          <div class="chemin-label">📍 Chemin de la Laiterie → Ave de Guétaria</div>
+          <div class="chemin-label" style="opacity:.6">Vue rue · Passage piéton</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMERCES -->
+<section class="commerces-section">
+  <div class="wrap">
+
+    <!-- Ronde des Pains -->
+    <div class="commerce-card rv">
+      <div class="commerce-img">
+        <img src="images/image_74.svg"
+             alt="Ronde des Pains" loading="lazy"/>
+        <div class="commerce-cat">Boulangerie</div>
+      </div>
+      <div class="commerce-body">
+        <div class="commerce-emoji">🥖</div>
+        <div class="commerce-name">La Ronde des Pains</div>
+        <div class="commerce-loc">230 avenue de Guétaria</div>
+        <p class="commerce-desc">Boulangerie artisanale proposant une large gamme de pains, viennoiseries et pâtisseries. Les produits sont élaborés avec soin, mettant en avant des saveurs traditionnelles et un savoir-faire local. À 5 minutes à pied de la villa.</p>
+      </div>
+    </div>
+
+    <!-- Spar -->
+    <div class="commerce-card reverse rv d1">
+      <div class="commerce-body">
+        <div class="commerce-emoji">🛒</div>
+        <div class="commerce-name">Spar</div>
+        <div class="commerce-loc">230 avenue de Guétaria</div>
+        <p class="commerce-desc">Supermarché de proximité proposant une large gamme de produits alimentaires, incluant des articles bio et régionaux. Ouvert tous les jours de 8h00 à 20h00, offrant une grande flexibilité pour vos courses quotidiennes.</p>
+        <div style="margin-top:.8rem;font-size:.75rem;color:var(--luzien);font-weight:500">🕗 Ouvert 7j/7 · 8h00–20h00</div>
+      </div>
+      <div class="commerce-img">
+        <img src="images/image_75.svg"
+             alt="Spar" loading="lazy"/>
+        <div class="commerce-cat">Supérette</div>
+      </div>
+    </div>
+
+    <!-- Ederra -->
+    <div class="commerce-card rv">
+      <div class="commerce-img">
+        <img src="images/ederra.jpg" alt="Ederra Guéthary" loading="lazy"/>
+        <div class="commerce-cat">Mode</div>
+      </div>
+      <div class="commerce-body">
+        <div class="commerce-emoji">👗</div>
+        <div class="commerce-name">Ederra</div>
+        <div class="commerce-loc">545 avenue du Général de Gaulle</div>
+        <p class="commerce-desc">Mode féminine éthique et élégante. Créations en petites séries, mettant en avant le savoir-faire local. L'ambiance y est raffinée et chaleureuse — la boutique de référence pour une mode responsable au Pays Basque.</p>
+        <a href="https://www.ederra.fr/" target="_blank" class="commerce-link">ederra.fr</a>
+      </div>
+    </div>
+
+    <!-- Parlementia surf shop -->
+    <div class="commerce-card reverse rv d1">
+      <div class="commerce-body">
+        <div class="commerce-emoji">🏄‍♂️</div>
+        <div class="commerce-name">Parlementia</div>
+        <div class="commerce-loc">4 chemin du Port</div>
+        <p class="commerce-desc">Boutique streetwear indépendante qui rend hommage à la mythique vague de Parlementia. Vêtements et accessoires inspirés du surf, du skate et de la culture urbaine. Sert également de coffee shop avec terrasse vue océan — idéal pour un latte matinal.</p>
+        <a href="https://parlementia-store.com" target="_blank" class="commerce-link">parlementia-store.com</a>
+      </div>
+      <div class="commerce-img">
+        <img src="images/parlementia-shop.jpg" alt="Parlementia surf shop Guéthary" loading="lazy"/>
+        <div class="commerce-cat">Surf &amp; Coffee</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- MORE ON MAP -->
+<div class="more-map">
+  <div class="wrap">
+    <h2>Et bien d'autres adresses…</h2>
+    <p>Restaurants, boutiques, activités — toute la sélection Guéthary sur une seule carte.</p>
+    <a href="https://maps.app.goo.gl/BoYND5Do1ARHPY1z9" target="_blank" class="map-btn">Ouvrir la carte complète</a>
+  </div>
+</div>
+
+<footer>
+  <div class="fl">Txorien Etxea · Guéthary</div>
+  <div class="fr">69 Chem. de la Laiterie · 64210 Guéthary<br/>© 2025 · Villa familiale</div>
+</footer>
+
+<script>
+const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in')}),{threshold:.08});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+</script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+var map=L.map('leaflet-map',{scrollWheelZoom:false}).setView([43.42260,-1.60510],17);
+L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png',{attribution:'OpenStreetMap',maxZoom:19}).addTo(map);
+function mkIcon(e,bg){return L.divIcon({className:'',html:'<div style="background:'+bg+';color:#fff;border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;border:3px solid #fff;box-shadow:0 2px 10px rgba(0,0,0,.35)">'+e+'</div>',iconSize:[36,36],iconAnchor:[18,18]});}
+L.marker([43.42198,-1.60536],{icon:mkIcon('','#1A4A5E')}).addTo(map).bindPopup('<b>Villa Txorien Etxea</b><br>69 Chemin de la Laiterie');
+L.marker([43.42310,-1.60480],{icon:mkIcon('','#e8593a')}).addTo(map).bindPopup('<b>Spar</b><br>230 avenue Getaria');
+L.marker([43.42333,-1.60510],{icon:mkIcon('','#d4882a')}).addTo(map).bindPopup('<b>La Ronde des Pains</b><br>230 avenue Getaria');
+var chemin=[[43.42198,-1.60536],[43.42215,-1.60534],[43.42235,-1.60525],[43.42255,-1.60510],[43.42275,-1.60495],[43.42310,-1.60480],[43.42333,-1.60510]];
+L.polyline(chemin,{color:'#2E6B8A',weight:6,opacity:.85,lineCap:'round',lineJoin:'round'}).addTo(map);
+var b=L.divIcon({className:'',html:'<div style="background:#fff;color:#1A4A5E;border-radius:20px;padding:.25rem .65rem;font-size:.72rem;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,.2);white-space:nowrap">5 min a pied</div>',iconSize:[90,26],iconAnchor:[45,13]});
+L.marker([43.42255,-1.60512],{icon:b,interactive:false}).addTo(map);
+</script>
+<script>
+var map=L.map("leaflet-map",{scrollWheelZoom:false}).setView([43.4190,-1.6125],16);
+L.tileLayer("https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png",{attribution:"OpenStreetMap",maxZoom:19}).addTo(map);
+function mkIcon(emoji,bg){return L.divIcon({className:"",html:"<div style=background:"+bg+";color:#fff;border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;font-size:1rem;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.3)>"+emoji+"</div>",iconSize:[34,34],iconAnchor:[17,17]});}
+L.marker([43.4165,-1.6138],{icon:mkIcon("🏠","#1A4A5E")}).addTo(map).bindPopup("<b>Villa Txorien Etxea</b><br>69 Chemin de la Laiterie");
+L.marker([43.4208,-1.6118],{icon:mkIcon("🛒","#e8593a")}).addTo(map).bindPopup("<b>Spar</b>");
+L.marker([43.4218,-1.6112],{icon:mkIcon("🥖","#d4882a")}).addTo(map).bindPopup("<b>La Ronde des Pains</b>");
+var chemin=[[43.4165,-1.6138],[43.4170,-1.6138],[43.4176,-1.6135],[43.4182,-1.6130],[43.4188,-1.6125],[43.4195,-1.6120],[43.4200,-1.6118],[43.4208,-1.6118],[43.4218,-1.6112]];
+L.polyline(chemin,{color:"#2E6B8A",weight:6,opacity:.85,lineCap:"round",lineJoin:"round"}).addTo(map);
+</script>
+</body>
+</html>

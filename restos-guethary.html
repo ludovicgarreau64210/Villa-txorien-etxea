@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Restaurants à Guéthary · Txorien Etxea</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Libre+Franklin:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    
+    :root{--blanc:#FEFCF8;--creme:#EEF4F7;--beige:#D6E6EF;--sable:#A8C8D8;--terre:#4A7A92;--brun:#1A4A5E;--luzien:#2E6B8A;--luzien-clair:#4A8FAD;--luzien-fonce:#1A4A5E;--luzien-pale:#D6E6EF;--luzien-ultra:#EEF4F7;--encre:#0C2330}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Libre Franklin',sans-serif;background:var(--blanc);color:var(--brun);overflow-x:hidden}
+    img{display:block;max-width:100%;height:auto}
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:1.1rem 2.5rem;display:flex;align-items:center;justify-content:space-between;background:rgba(254,252,248,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--luzien-pale);box-shadow:0 2px 20px rgba(30,95,122,.07)}
+    .logo{font-family:'Cormorant',serif;font-size:1.05rem;font-weight:400;letter-spacing:.05em;color:var(--luzien-fonce);text-decoration:none;line-height:1.25}
+    .logo small{display:block;font-family:'Libre Franklin',sans-serif;font-size:.56rem;font-weight:300;letter-spacing:.2em;text-transform:uppercase;opacity:.5;margin-top:2px}
+    .nav-links{list-style:none;display:flex;gap:1.5rem;align-items:center}
+    .nav-links a{font-size:.63rem;font-weight:400;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;color:var(--terre);transition:color .3s}
+    .nav-links a:hover,.nav-links a.active{color:var(--luzien)}
+    .nav-back{display:flex;align-items:center;gap:.5rem;font-size:.63rem;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;color:var(--terre);transition:color .3s}
+    .nav-back::before{content:'←';font-size:.9rem}
+    .nav-back:hover{color:var(--luzien)}
+    .wrap{max-width:1100px;margin:0 auto;padding:0 2.5rem}
+    .ey{display:flex;align-items:center;gap:.8rem;font-size:.62rem;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:var(--luzien);margin-bottom:.8rem}
+    .ey::before{content:'';width:20px;height:1px;background:var(--sable)}
+    h1.t,h2.t{font-family:'Cormorant',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:300;line-height:1.15;color:var(--brun)}
+    h2.t{font-size:clamp(1.5rem,2.5vw,2rem)}
+    h1.t em,h2.t em{font-style:italic;color:var(--luzien)}
+    .bod{font-size:.88rem;font-weight:300;line-height:1.95;color:var(--terre)}
+    footer{background:var(--encre);padding:1.8rem 2.5rem;display:flex;justify-content:space-between;align-items:center;margin-top:0}
+    .fl{font-family:'Cormorant',serif;font-size:1rem;font-style:italic;font-weight:300;color:rgba(255,255,255,.4)}
+    .fr{font-size:.6rem;color:rgba(255,255,255,.2);letter-spacing:.12em;text-align:right;line-height:1.8}
+    .rv{opacity:0;transform:translateY(18px);transition:opacity .7s,transform .7s}
+    .rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}
+    .rv.in{opacity:1;transform:none}
+    @media(max-width:640px){.wrap{padding:0 1.2rem}footer{flex-direction:column;gap:.6rem;text-align:center}.fr{text-align:center}}
+
+
+    /* PAGE HERO */
+    .page-hero{
+      padding:8rem 0 4rem;
+      background:var(--luzien-fonce);
+      position:relative;
+      overflow:hidden;
+    }
+    .page-hero::before{
+      content:'';
+      position:absolute;
+      inset:0;
+      background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 200'%3E%3Cpath d='M0,100 C200,60 400,140 600,80 C700,50 750,120 800,100 L800,200 L0,200Z' fill='rgba(74,143,173,0.08)'/%3E%3C/svg%3E") bottom/cover no-repeat;
+    }
+    .page-hero .ey{color:rgba(255,255,255,.35)}
+    .page-hero .ey::before{background:rgba(255,255,255,.2)}
+    .page-hero h1.t{color:#fff}
+    .page-hero h1.t em{color:var(--luzien-clair)}
+    .page-hero .bod{color:rgba(255,255,255,.5);max-width:560px;margin-top:1rem}
+    .page-hero-body{position:relative;z-index:1}
+
+    /* MAP LINK PILL */
+    .map-pill{
+      display:inline-flex;align-items:center;gap:.6rem;
+      margin-top:1.8rem;
+      padding:.65rem 1.2rem;
+      background:rgba(255,255,255,.1);
+      border:1px solid rgba(255,255,255,.2);
+      color:rgba(255,255,255,.7);
+      text-decoration:none;
+      font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;
+      transition:all .25s;
+      backdrop-filter:blur(4px);
+    }
+    .map-pill:hover{background:rgba(255,255,255,.18);color:#fff}
+    .map-pill::before{content:'📍';font-size:.9rem}
+
+    /* RESTOS GRID */
+    .restos{padding:5rem 0 6rem}
+    .restos-grid{display:flex;flex-direction:column;gap:0}
+
+    .resto-card{
+      display:grid;
+      grid-template-columns:360px 1fr;
+      border-bottom:1px solid var(--beige);
+      overflow:hidden;
+      transition:background .3s;
+    }
+    .resto-card:hover{background:var(--luzien-ultra)}
+    .resto-card.reverse{grid-template-columns:1fr 360px}
+
+    .resto-img{
+      height:280px;
+      overflow:hidden;
+      position:relative;
+      background:var(--luzien-pale);
+    }
+    .resto-img img{
+      width:100%;height:100%;object-fit:cover;
+      transition:transform .6s;
+    }
+    .resto-card:hover .resto-img img{transform:scale(1.04)}
+    .resto-cat{
+      position:absolute;top:.8rem;left:.8rem;
+      background:var(--luzien-fonce);color:#fff;
+      font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;
+      padding:.25rem .6rem;
+    }
+
+    .resto-body{
+      padding:2.5rem 2.8rem;
+      display:flex;flex-direction:column;justify-content:center;
+    }
+    .resto-card.reverse .resto-body{padding:2.5rem 2.8rem 2.5rem 3.2rem}
+    .resto-emoji{font-size:1.4rem;margin-bottom:.6rem}
+    .resto-name{font-family:'Cormorant',serif;font-size:1.65rem;font-weight:400;color:var(--brun);margin-bottom:.4rem;line-height:1.2}
+    .resto-loc{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--sable);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+    .resto-loc::before{content:'📍';font-size:.75rem}
+    .resto-desc{font-size:.84rem;font-weight:300;line-height:1.9;color:var(--terre)}
+    .resto-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.2rem}
+    .tag{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;padding:.22rem .7rem;background:var(--luzien-pale);color:var(--luzien);border-radius:2px}
+
+    /* FOOD TRUCKS SPECIAL */
+    .foodtrucks-section{
+      background:var(--luzien-fonce);
+      padding:4rem 0;
+    }
+    .ft-grid{
+      display:grid;grid-template-columns:1fr 1fr;gap:1px;
+      background:rgba(255,255,255,.08);
+      margin-top:2.5rem;
+    }
+    .ft-card{
+      background:rgba(255,255,255,.04);
+      padding:2rem 2.2rem;
+      transition:background .3s;
+    }
+    .ft-card:hover{background:rgba(255,255,255,.08)}
+    .ft-name{font-family:'Cormorant',serif;font-size:1.3rem;font-weight:400;color:#fff;margin-bottom:.4rem}
+    .ft-desc{font-size:.82rem;font-weight:300;color:rgba(255,255,255,.5);line-height:1.8}
+    .ft-emoji{font-size:1.6rem;margin-bottom:.7rem}
+    .ft-section-img{
+      width:100%;height:260px;overflow:hidden;margin-top:2.5rem;
+      position:relative;
+    }
+    .ft-section-img img{width:100%;height:100%;object-fit:cover;opacity:.6}
+    .ft-section-img-overlay{
+      position:absolute;inset:0;
+      display:flex;align-items:flex-end;
+      padding:1.5rem 2rem;
+      background:linear-gradient(to top,rgba(12,35,48,.8),transparent);
+    }
+    .ft-section-img-label{
+      font-family:'Cormorant',serif;font-size:1.1rem;font-style:italic;color:rgba(255,255,255,.7);
+    }
+
+    @media(max-width:800px){
+      .resto-card,.resto-card.reverse{grid-template-columns:1fr;grid-template-rows:220px auto}
+      .resto-card.reverse .resto-img{order:-1}
+      .resto-body,.resto-card.reverse .resto-body{padding:1.8rem 1.5rem}
+      .ft-grid{grid-template-columns:1fr}
+    }
+  </style>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Villa Txorien Etxea<small>Guéthary · Pays basque</small></a>
+  <ul class="nav-links">
+    
+    <li><a href="index.html">La villa</a></li>
+    <li><a href="restos-guethary.html" class="active">Restaurants</a></li>
+    <li><a href="commerces-guethary.html">Commerces</a></li>
+
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="wrap page-hero-body">
+    <div class="ey">Sélection Guéthary</div>
+    <h1 class="t">Nos adresses<br/><em>restaurants</em></h1>
+    <p class="bod">Une sélection curatée par les propriétaires — des adresses testées et appréciées, de la terrasse face aux vagues au restaurant gastronomique.</p>
+    <a href="https://maps.app.goo.gl/BoYND5Do1ARHPY1z9" target="_blank" class="map-pill">Voir toutes les adresses sur la carte</a>
+  </div>
+</div>
+
+<!-- RESTOS -->
+<section class="restos">
+  <div class="wrap">
+    <div class="restos-grid">
+
+      <!-- L'Hétéroclito -->
+      <div class="resto-card rv">
+        <div class="resto-img">
+          <img src="images/heteroclito.jpg" alt="L'Hétéroclito Guéthary" loading="lazy"/>
+          <div class="resto-cat">Incontournable</div>
+        </div>
+        <div class="resto-body">
+          <div class="resto-emoji">🌊🦪</div>
+          <div class="resto-name">L'Hétéroclito</div>
+          <div class="resto-loc">Sommet de Parlementia · Guéthary</div>
+          <p class="resto-desc">Niché au sommet de la vague de Parlementia, un comptoir marin à la déco éclectique et au charme irrésistible. Terrasse ouverte sur l'océan, idéale au coucher du soleil. Cuisine iodée — tapas, planchas, plateaux de fruits de mer frais de Saint-Jean-de-Luz. Ouvert de mars à novembre, service continu.</p>
+          <div class="resto-tags"><span class="tag">Fruits de mer</span><span class="tag">Tapas</span><span class="tag">Vue océan</span><span class="tag">Mar–Nov</span></div>
+        </div>
+      </div>
+
+      <!-- Chez Nadyne -->
+      <div class="resto-card reverse rv d1">
+        <div class="resto-body">
+          <div class="resto-emoji">🧜‍♀️</div>
+          <div class="resto-name">Chez Nadyne</div>
+          <div class="resto-loc">Plage de Cénitz · Guéthary</div>
+          <p class="resto-desc">Un spot exceptionnel perché au-dessus de la plage de Cénitz, parfait pour vivre un coucher de soleil inoubliable. Ambiance « chill & stylée », cuisine généreuse à partager — burger basque au fromage fondant, assiettes fraîches. DJ set régulièrement.</p>
+          <div class="resto-tags"><span class="tag">Vue plage</span><span class="tag">Chill</span><span class="tag">DJ Set</span><span class="tag">Coucher de soleil</span></div>
+        </div>
+        <div class="resto-img">
+          <img src="images/nadyne.jpg" alt="Chez Nadyne Guéthary" loading="lazy"/>
+          <div class="resto-cat">Coup de cœur</div>
+        </div>
+      </div>
+
+      <!-- Le Pasaia -->
+      <div class="resto-card rv">
+        <div class="resto-img">
+          <img src="images/pasaia.jpg" alt="Le Pasaia Guéthary" loading="lazy"/>
+          <div class="resto-cat">Bar & tapas</div>
+        </div>
+        <div class="resto-body">
+          <div class="resto-emoji">🏖️</div>
+          <div class="resto-name">Le Pasaia</div>
+          <div class="resto-loc">Port de Guéthary</div>
+          <p class="resto-desc">Posé au bord de l'océan, à deux pas du port de Guéthary, Le Pasaia incarne l'esprit décontracté du Pays Basque. À l'image d'un cabanon en bois face aux vagues. Tapas et planches généreuses, cocktails, vins ou bières. Mention spéciale pour les créations de la mer — ceviche, chipirons, couteaux à la plancha.</p>
+          <div class="resto-tags"><span class="tag">Tapas</span><span class="tag">Cocktails</span><span class="tag">Port</span><span class="tag">Fruits de mer</span></div>
+        </div>
+      </div>
+
+      <!-- Le Bar Basque -->
+      <div class="resto-card reverse rv d1">
+        <div class="resto-body">
+          <div class="resto-emoji">🍷🏘️</div>
+          <div class="resto-name">Le Bar Basque</div>
+          <div class="resto-loc">Centre village · Guéthary</div>
+          <p class="resto-desc">En plein cœur de Guéthary, cette adresse chaleureuse séduit par ses deux terrasses ensoleillées et sa vue sur les vagues. Cuisine moderne et généreuse — tapas, plats du jour, chipirons ou poissons de la criée, foie gras, millefeuille maison. Parfois concerts ou DJ sets. L'adresse incontournable du village.</p>
+          <div class="resto-tags"><span class="tag">Village</span><span class="tag">Terrasse</span><span class="tag">Produits locaux</span><span class="tag">Concerts</span></div>
+        </div>
+        <div class="resto-img">
+          <img src="images/barbasque.jpg" alt="Le Bar Basque Guéthary" loading="lazy"/>
+          <div class="resto-cat">Bistrot</div>
+        </div>
+      </div>
+
+      <!-- Restaurant Gaua -->
+      <div class="resto-card rv">
+        <div class="resto-img">
+          <img src="images/gaua.jpg" alt="Restaurant Gaua Guéthary" loading="lazy"/>
+          <div class="resto-cat">Gastronomique</div>
+        </div>
+        <div class="resto-body">
+          <div class="resto-emoji">🌙</div>
+          <div class="resto-name">Restaurant Gaua</div>
+          <div class="resto-loc">210 Route Départementale 810</div>
+          <p class="resto-desc">Restaurant conceptuel dirigé par le chef Benoît Sarthou, anciennement étoilé au Moulin d'Alotz. Dans un ancien garage transformé en lounge industriel, une expérience culinaire moderne et conviviale. Cuisine ouverte, bar central, playlists soignées. À faire absolument.</p>
+          <div class="resto-tags"><span class="tag">Gastronomique</span><span class="tag">Chef étoilé</span><span class="tag">Lounge</span><span class="tag">À faire</span></div>
+        </div>
+      </div>
+
+      <!-- Bahia Beach -->
+      <div class="resto-card reverse rv d1">
+        <div class="resto-body">
+          <div class="resto-emoji">🌊</div>
+          <div class="resto-name">Le Bahia Beach</div>
+          <div class="resto-loc">Bord de mer · Guéthary</div>
+          <p class="resto-desc">Un lieu authentique et magique en bord de mer, avec une atmosphère décontractée et conviviale. La cuisine locale est simple et savoureuse, avec des spécialités comme le thon mariné ou les chipirons à la plancha. Aussi connu comme Guethappy.</p>
+          <div class="resto-tags"><span class="tag">Plage</span><span class="tag">Chipirons</span><span class="tag">Thon</span><span class="tag">Authentique</span></div>
+        </div>
+        <div class="resto-img">
+          <img src="images/bahia.jpg" alt="Le Bahia Beach Guéthary" loading="lazy"/>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOD TRUCKS -->
+<section class="foodtrucks-section">
+  <div class="wrap">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center">
+      <div>
+        <div class="ey" style="color:rgba(255,255,255,.3)">Jetée des Alcyons</div>
+        <h2 class="t" style="color:#fff">Food trucks<br/><em style="color:var(--luzien-clair)">au coucher du soleil</em></h2>
+        <p class="bod" style="color:rgba(255,255,255,.5);margin-top:1rem">Idéal pour les couchers de soleil et une ambiance détendue, situés sur la Jetée des Alcyons à Guéthary, ces food-trucks offrent une superbe vue sur l'océan.</p>
+      </div>
+      <div class="ft-grid">
+        <div class="ft-card">
+          <div class="ft-emoji">🌮</div>
+          <div class="ft-name">Paz & Arroz</div>
+          <div class="ft-desc">Cuisine d'inspiration brésilien-mexicain. Saveurs solaires face à l'Atlantique.</div>
+        </div>
+        <div class="ft-card">
+          <div class="ft-emoji">🌿</div>
+          <div class="ft-name">Dar Dar</div>
+          <div class="ft-desc">Cuisine d'inspiration méditerranéenne, avec une forte saveur marocaine.</div>
+        </div>
+      </div>
+    </div>
+    <div class="ft-section-img" style="margin-top:2.5rem">
+      <img src="images/foodtrucks.jpg" alt="Food trucks Jetée des Alcyons Guéthary" loading="lazy"/>
+      <div class="ft-section-img-overlay">
+        <div class="ft-section-img-label">Jetée des Alcyons · Guéthary · coucher de soleil</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="fl">Txorien Etxea · Guéthary</div>
+  <div class="fr">69 Chem. de la Laiterie · 64210 Guéthary<br/>© 2025 · Villa familiale</div>
+</footer>
+
+
+<script>
+const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in')}),{threshold:.08});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+</script>
+
+</body>
+</html>

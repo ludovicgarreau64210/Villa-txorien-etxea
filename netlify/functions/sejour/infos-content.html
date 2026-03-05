@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Infos séjour · Txorien Etxea</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&family=Libre+Franklin:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root{
+      --ink:#0C1A10;--paper:#F4F0E8;--accent:#2E6B2A;--accent-light:#4A9A45;
+      --warm:#8B6B2A;--red:#CC3333;--muted:#7A7260;--border:#D8D0BC;
+      --card:#FDFAF4;--code-bg:#1A2A1A;--code-fg:#7ACC6A;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Libre Franklin',sans-serif;background:var(--paper);color:var(--ink);min-height:100vh}
+
+    /* ── MAIN CONTENT ────────────────────────────────────────────────────── */
+
+    nav{
+      position:sticky;top:0;z-index:100;
+      background:rgba(244,240,232,.96);backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--border);
+      padding:.9rem 2rem;
+      display:flex;align-items:center;justify-content:space-between;
+    }
+    .nav-logo{font-family:'Cormorant',serif;font-size:1rem;font-weight:400;
+      color:var(--ink);text-decoration:none;letter-spacing:.05em}
+    .nav-logo small{display:block;font-size:.55rem;font-family:'Libre Franklin',sans-serif;
+      font-weight:300;letter-spacing:.2em;text-transform:uppercase;opacity:.4;margin-top:1px}
+    .nav-links{display:flex;gap:1.2rem;list-style:none}
+    .nav-links a{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;
+      text-decoration:none;color:var(--muted);transition:color .2s}
+    .nav-links a:hover{color:var(--accent)}
+    .nav-secure{font-size:.6rem;letter-spacing:.1em;color:var(--accent);
+      display:flex;align-items:center;gap:.35rem}
+
+    /* ── HERO ────────────────────────────────────────────────────────────── */
+    .hero{
+      background:var(--ink);padding:5rem 2rem 3.5rem;
+      position:relative;overflow:hidden;
+    }
+    .hero::before{
+      content:'';position:absolute;inset:0;
+      background:repeating-linear-gradient(
+        45deg,transparent,transparent 40px,rgba(255,255,255,.015) 40px,rgba(255,255,255,.015) 41px
+      );
+    }
+    .hero-inner{max-width:900px;margin:0 auto;position:relative}
+    .hero-eyebrow{font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;
+      color:var(--accent-light);margin-bottom:.8rem;display:flex;align-items:center;gap:.6rem}
+    .hero-eyebrow::before{content:'';width:16px;height:1px;background:var(--accent)}
+    .hero h1{font-family:'Cormorant',serif;font-size:clamp(2rem,4vw,3rem);
+      font-weight:300;color:white;line-height:1.15;margin-bottom:1rem}
+    .hero h1 em{font-style:italic;color:rgba(255,255,255,.5)}
+    .hero-addr{
+      display:inline-flex;align-items:center;gap:.6rem;
+      padding:.5rem 1rem;background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      font-family:'DM Mono',monospace;font-size:.78rem;color:rgba(255,255,255,.6);
+      margin-top:.5rem;
+    }
+
+    /* ── TOC ─────────────────────────────────────────────────────────────── */
+    .toc{
+      background:white;border:1px solid var(--border);
+      max-width:900px;margin:2.5rem auto;padding:1.8rem 2.2rem;
+      display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.6rem .8rem;
+    }
+    .toc-title{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;
+      color:var(--muted);margin-bottom:.8rem;grid-column:1/-1;
+      padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+    .toc a{
+      font-size:.78rem;color:var(--ink);text-decoration:none;
+      display:flex;align-items:center;gap:.5rem;padding:.3rem 0;
+      border-bottom:1px solid transparent;transition:color .2s,border-color .2s;
+    }
+    .toc a:hover{color:var(--accent);border-color:var(--accent)}
+    .toc-num{font-family:'DM Mono',monospace;font-size:.65rem;
+      color:var(--muted);min-width:1.4rem}
+
+    /* ── SECTIONS ────────────────────────────────────────────────────────── */
+    .wrap{max-width:900px;margin:0 auto;padding:0 2rem}
+    .section{padding:3rem 0 2rem;border-top:1px solid var(--border)}
+    .section:first-of-type{border-top:none}
+
+    .s-header{display:flex;align-items:baseline;gap:1.2rem;margin-bottom:1.8rem}
+    .s-num{font-family:'DM Mono',monospace;font-size:.75rem;color:var(--muted)}
+    .s-title{font-family:'Cormorant',serif;font-size:1.6rem;font-weight:400;color:var(--ink)}
+    .s-title em{font-style:italic;color:var(--accent)}
+
+    /* code badges */
+    .code-grid{display:flex;flex-wrap:wrap;gap:1rem;margin:1.2rem 0}
+    .code-card{
+      background:var(--code-bg);border:1px solid rgba(122,204,106,.15);
+      padding:1.2rem 1.6rem;flex:1;min-width:180px;
+    }
+    .code-label{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;
+      color:rgba(122,204,106,.5);margin-bottom:.4rem}
+    .code-value{font-family:'DM Mono',monospace;font-size:1.6rem;
+      color:var(--code-fg);letter-spacing:.1em;font-weight:400}
+    .code-sub{font-size:.68rem;color:rgba(122,204,106,.4);margin-top:.3rem;
+      font-family:'DM Mono',monospace}
+
+    /* alert box */
+    .alert{
+      padding:1rem 1.3rem;margin:1rem 0;
+      border-left:3px solid;
+      font-size:.84rem;font-weight:300;line-height:1.8;
+    }
+    .alert-warn{background:#FFF8E8;border-color:var(--warm);color:#5A3A00}
+    .alert-info{background:#EEF7EE;border-color:var(--accent);color:#1A4A1A}
+    .alert-red{background:#FFF0F0;border-color:var(--red);color:#6A0000}
+    .alert strong{font-weight:500}
+
+    /* body text */
+    .body{font-size:.88rem;font-weight:300;line-height:1.9;color:#3A3020;margin:.8rem 0}
+    .body + .body{margin-top:0}
+
+    /* images */
+    .img-wrap{margin:1.2rem 0;border:1px solid var(--border);overflow:hidden;border-radius:6px}
+    .img-wrap img{width:100%;display:block;object-fit:cover}
+    .img-caption{font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;
+      color:var(--muted);padding:.5rem .8rem;background:white;border-top:1px solid var(--border)}
+
+    .img-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.2rem 0}
+    .img-grid .img-wrap{margin:0}
+
+    /* info-row : photo + video side by side */
+    .info-row{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:1.4rem;align-items:stretch}
+    .info-row > div{display:flex;flex-direction:column}
+    .info-row .img-wrap{margin:0;flex:1}
+    .info-row .img-wrap img{height:100%;min-height:220px;max-height:280px;object-fit:cover;width:100%}
+    .info-row .video-card{margin:0;flex:1;display:flex;flex-direction:column}
+    .info-row .video-card .video-thumb{flex:1;min-height:160px;object-fit:cover}
+    .info-row-label{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;
+      color:var(--muted);margin-bottom:.4rem}
+
+    /* waste bins section */
+    .waste-block{margin:1.6rem 0;padding:1.4rem;background:white;border:1px solid var(--border);border-radius:10px}
+    .waste-block + .waste-block{margin-top:1rem}
+    .waste-title{font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;
+      font-family:'Libre Franklin',sans-serif;font-weight:500;color:var(--ink);
+      margin-bottom:1rem;display:flex;align-items:center;gap:.6rem}
+    .waste-address{font-family:'DM Mono',monospace;font-size:.75rem;color:var(--accent);
+      background:rgba(46,107,42,.08);padding:.2rem .6rem;border-radius:4px}
+    .waste-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:1rem}
+    .waste-grid .img-wrap{margin:0;border-radius:8px;overflow:hidden}
+    .waste-grid .img-wrap:first-child img{width:100%;height:260px;object-fit:cover}
+    .waste-grid .img-wrap:last-child img{width:100%;height:260px;object-fit:cover;object-position:center}
+    .waste-badge{display:inline-flex;align-items:center;gap:.4rem;font-size:.6rem;
+      letter-spacing:.12em;text-transform:uppercase;color:var(--accent);
+      margin-top:.5rem;font-family:'DM Mono',monospace}
+
+    /* keys grid — 2 cols centered with fixed square images */
+    .keys-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin:1.4rem 0 0}
+    .keys-grid .img-wrap{margin:0;border-radius:8px;overflow:hidden}
+    .keys-grid .img-wrap img{width:100%;height:260px;object-fit:cover;object-position:center 30%}
+    .keys-grid .img-caption{text-align:center}
+
+    /* video cards */
+    .video-card{
+      position:relative;cursor:pointer;border-radius:8px;overflow:hidden;
+      background:#0C1A10;border:1px solid var(--border);
+      margin:.8rem 0;transition:transform .2s,box-shadow .2s;
+    }
+    .video-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.15)}
+    .video-thumb{
+      width:100%;height:160px;object-fit:cover;display:block;
+      filter:brightness(.75);transition:filter .3s;
+    }
+    .video-card:hover .video-thumb{filter:brightness(.9)}
+    .video-thumb-placeholder{
+      width:100%;height:160px;background:linear-gradient(135deg,#1A2A1A,#0C1A10);
+      display:flex;align-items:center;justify-content:center;
+    }
+    .video-play-btn{
+      position:absolute;top:50%;left:50%;transform:translate(-50%,-65%);
+      width:52px;height:52px;background:rgba(255,255,255,.92);border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      transition:transform .2s,background .2s;
+    }
+    .video-play-btn::after{
+      content:'';border-style:solid;border-width:10px 0 10px 18px;
+      border-color:transparent transparent transparent #CC3333;
+      margin-left:3px;
+    }
+    .video-card:hover .video-play-btn{transform:translate(-50%,-65%) scale(1.1);background:#fff}
+    .video-card-label{
+      padding:.65rem 1rem;background:var(--card);
+      border-top:1px solid var(--border);
+    }
+    .video-card-title{font-size:.8rem;font-weight:500;color:var(--ink)}
+    .video-card-sub{font-size:.6rem;color:var(--muted);font-family:'DM Mono',monospace;margin-top:.15rem}
+    .video-cards-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.8rem;margin-top:1rem}
+
+    /* modal video */
+    #vmod{
+      display:none;position:fixed;inset:0;z-index:9999;
+      background:rgba(0,0,0,.88);align-items:center;justify-content:center;
+    }
+    #vmod.open{display:flex}
+    #vmod-inner{position:relative;width:min(800px,94vw)}
+    #vmod-inner::before{content:'';display:block;padding-top:56.25%}
+    #vmodIframe{
+      position:absolute;inset:0;width:100%;height:100%;border:none;
+    }
+    #vmod-close{
+      position:absolute;top:-2.4rem;right:0;
+      background:none;border:none;color:rgba(255,255,255,.7);
+      font-size:1.4rem;cursor:pointer;line-height:1;
+    }
+    #vmod-close:hover{color:#fff}
+    #vmod-title{
+      position:absolute;bottom:-2.2rem;left:0;
+      font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;
+      color:rgba(255,255,255,.4);
+    }
+
+    /* lumières list */
+    .light-list{list-style:none;margin:.8rem 0}
+    .light-item{
+      padding:.75rem 0;border-bottom:1px solid var(--border);
+      display:grid;grid-template-columns:180px 1fr;gap:1rem;
+      font-size:.84rem;font-weight:300;line-height:1.7;
+    }
+    .light-item:last-child{border-bottom:none}
+    .light-name{font-weight:500;color:var(--ink)}
+    .light-cmd{font-family:'DM Mono',monospace;font-size:.75rem;
+      background:var(--code-bg);color:var(--code-fg);
+      padding:.15rem .45rem;border-radius:2px;display:inline-block;margin-top:.2rem}
+
+    /* règles */
+    .rules{
+      display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem;margin:1rem 0
+    }
+    .rule-card{
+      padding:1.2rem 1.4rem;background:var(--card);border:1px solid var(--border);
+    }
+    .rule-icon{font-size:1.4rem;margin-bottom:.5rem}
+    .rule-title{font-size:.78rem;font-weight:500;margin-bottom:.3rem}
+    .rule-text{font-size:.78rem;font-weight:300;color:var(--muted);line-height:1.7}
+
+    footer{
+      background:var(--ink);padding:1.5rem 2rem;
+      display:flex;justify-content:space-between;align-items:center;margin-top:4rem
+    }
+    .fl{font-family:'Cormorant',serif;font-size:.9rem;font-style:italic;
+      font-weight:300;color:rgba(255,255,255,.3)}
+    .fr{font-size:.58rem;color:rgba(255,255,255,.15);letter-spacing:.1em;text-align:right}
+
+    @media(max-width:640px){
+      .nav-links{display:none}
+      .light-item{grid-template-columns:1fr;gap:.3rem}
+      .img-grid{grid-template-columns:1fr}
+      .code-card{min-width:140px}
+      .toc{padding:1.2rem}
+      .wrap{padding:0 1.2rem}
+    }
+  </style>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">Villa Txorien Etxea
+    <small>Guéthary · Pays basque</small>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">← La villa</a></li>
+    <li><a href="restos-guethary.html">Restaurants</a></li>
+    <li><a href="commerces-guethary.html">Commerces</a></li>
+  </ul>
+  <div class="nav-secure">🔒 Page privée</div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Guide du séjour</div>
+    <h1>Tout ce qu'il faut savoir<br/><em>pour profiter sans friction</em></h1>
+    <div class="hero-addr">📍 69 chemin de la Laiterie · 64210 Guéthary</div>
+  </div>
+</div>
+
+<!-- TABLE DES MATIÈRES -->
+<div class="wrap">
+  <div class="toc">
+    <div class="toc-title">Sommaire rapide</div>
+    <a href="#arrivee"><span class="toc-num">01</span>Arriver à la villa</a>
+    <a href="#codes"><span class="toc-num">02</span>Codes &amp; accès</a>
+    <a href="#cles"><span class="toc-num">03</span>Clés &amp; verrous</a>
+    <a href="#wifi"><span class="toc-num">04</span>WiFi</a>
+    <a href="#fonctionnement"><span class="toc-num">05</span>Fonctionnement</a>
+    <a href="#poubelles"><span class="toc-num">06</span>Poubelles</a>
+    <a href="#lumieres"><span class="toc-num">07</span>Lumières &amp; domotique</a>
+    <a href="#piscine"><span class="toc-num">08</span>Piscine</a>
+    <a href="#bbq"><span class="toc-num">09</span>BBQ &amp; Plancha</a>
+    <a href="#defender"><span class="toc-num">10</span>Land Rover Defender</a>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- ── 01 ARRIVÉE ─────────────────────────────────────────────────────────── -->
+<div class="section" id="arrivee">
+  <div class="s-header">
+    <span class="s-num">01</span>
+    <h2 class="s-title">Arriver à la <em>villa</em></h2>
+  </div>
+  <p class="body">En arrivant à Guéthary, vous arriverez par le haut du village. Une fois le feu tricolore passé, Waze vous indique parfois de prendre la 1ère à droite — <strong>ne le faites pas</strong>.</p>
+  <div class="alert alert-warn">
+    <strong>💡 Astuce :</strong> Prenez la <strong>2ème à droite (rue Édouard Gelos)</strong> pour éviter l'épingle à cheveux. C'est plus simple et plus rapide.
+  </div>
+  <div class="img-grid">
+    <div class="img-wrap">
+      <img src="images/image_78.jpg" alt="Carte itinéraire rue Édouard Gelos" loading="lazy" style="height:280px;object-fit:cover"/>
+      <div class="img-caption">Itinéraire recommandé · Rue Édouard Gelos</div>
+    </div>
+    <div class="img-wrap">
+      <img src="images/image_79.jpg" alt="Épingle à cheveux à éviter" loading="lazy" style="height:280px;object-fit:cover;object-position:center"/>
+      <div class="img-caption">L'épingle à cheveux à éviter 😅</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── 02 CODES ───────────────────────────────────────────────────────────── -->
+<div class="section" id="codes">
+  <div class="s-header">
+    <span class="s-num">02</span>
+    <h2 class="s-title">Codes &amp; <em>accès</em></h2>
+  </div>
+  <div class="code-grid">
+    <div class="code-card">
+      <div class="code-label">Portillon</div>
+      <div class="code-value">010583</div>
+    </div>
+    <div class="code-card">
+      <div class="code-label">Alarme · désactiver</div>
+      <div class="code-value">2808</div>
+      <div class="code-sub">+ touche OFF</div>
+    </div>
+    <div class="code-card">
+      <div class="code-label">Boîte à clés</div>
+      <div class="code-value">2906</div>
+      <div class="code-sub">Remettre les clés une fois rentré</div>
+    </div>
+  </div>
+
+  <div class="info-row">
+    <div>
+      <div class="info-row-label">📍 Boîte à clés</div>
+      <div class="img-wrap">
+        <img src="images/image_80.jpg" alt="Emplacement boîte à clés" loading="lazy"/>
+        <div class="img-caption">Emplacement de la boîte à clés</div>
+      </div>
+    </div>
+    <div>
+      <div class="info-row-label">🎬 Vidéo explicative</div>
+      <div class="video-card" style="margin:0" onclick="openVmod('https://www.youtube.com/embed/I1964ftGrrU?autoplay=1','Désactiver l\'alarme')">
+        <img src="images/thumb-alarm.svg" class="video-thumb" alt="Désactiver l'alarme"/>
+        <div class="video-play-btn"></div>
+        <div class="video-card-label">
+          <div class="video-card-title">Désactiver l'alarme</div>
+          <div class="video-card-sub">Vidéo explicative · cliquer pour lancer</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── 03 CLÉS ────────────────────────────────────────────────────────────── -->
+<div class="section" id="cles">
+  <div class="s-header">
+    <span class="s-num">03</span>
+    <h2 class="s-title">Clés &amp; <em>verrous</em></h2>
+  </div>
+  <p class="body">Dans la maison, les clés sont sur le <strong>meuble bleu à droite du mur en ardoise</strong>, dans un panier blanc. Vous y trouverez les doubles des clés de la maison ainsi que les clés du Land Rover Defender.</p>
+  <div class="code-grid">
+    <div class="code-card">
+      <div class="code-label">Verrous garage</div>
+      <div class="code-value">8118</div>
+    </div>
+    <div class="code-card">
+      <div class="code-label">Verrous toutes portes</div>
+      <div class="code-value">9752</div>
+    </div>
+  </div>
+  <div class="keys-grid">
+    <div class="img-wrap">
+      <img src="images/image_81.jpg" alt="Clé garage" loading="lazy"/>
+      <div class="img-caption">🔑 Clé garage · U08118</div>
+    </div>
+    <div class="img-wrap">
+      <img src="images/image_82.jpg" alt="Clé portes" loading="lazy"/>
+      <div class="img-caption">🔑 Clé portes · U09752</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── 04 WIFI ────────────────────────────────────────────────────────────── -->
+<div class="section" id="wifi">
+  <div class="s-header">
+    <span class="s-num">04</span>
+    <h2 class="s-title">WiFi</h2>
+  </div>
+  <div class="code-grid">
+    <div class="code-card">
+      <div class="code-label">Réseau</div>
+      <div class="code-value" style="font-size:1.2rem">Guetharreau</div>
+    </div>
+    <div class="code-card">
+      <div class="code-label">Mot de passe</div>
+      <div class="code-value" style="font-size:1.2rem">Princessepatate87</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── 05 FONCTIONNEMENT ──────────────────────────────────────────────────── -->
+<div class="section" id="fonctionnement">
+  <div class="s-header">
+    <span class="s-num">05</span>
+    <h2 class="s-title">Fonctionnement de <em>la maison</em></h2>
+  </div>
+  <div class="rules">
+    <div class="rule-card">
+      <div class="rule-icon">✅</div>
+      <div class="rule-title">Vous pouvez tout utiliser</div>
+      <div class="rule-text">Tous les équipements, appareils et produits dans les placards sont à votre disposition.</div>
+    </div>
+    <div class="rule-card">
+      <div class="rule-icon">🔄</div>
+      <div class="rule-title">Règle de remplacement</div>
+      <div class="rule-text">Ce que vous consommez, vous le remplacez à l'identique — même marque, même modèle.</div>
+    </div>
+    <div class="rule-card">
+      <div class="rule-icon">🏄</div>
+      <div class="rule-title">Planches de surf</div>
+      <div class="rule-text">Les planches en résine accrochées au mur et certaines dans le garage sont à ne pas utiliser.</div>
+    </div>
+    <div class="rule-card">
+      <div class="rule-icon">🤖</div>
+      <div class="rule-title">Robot tondeuse</div>
+      <div class="rule-text">Ne laissez rien sur la pelouse — le robot ne détecte pas encore tous les objets parfaitement.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── 06 POUBELLES ───────────────────────────────────────────────────────── -->
+<div class="section" id="poubelles">
+  <div class="s-header">
+    <span class="s-num">06</span>
+    <h2 class="s-title">Poubelles &amp; <em>tri</em></h2>
+  </div>
+
+  <div class="waste-block">
+    <div class="waste-title">
+      🗑️ Jaunes &amp; ménagères
+      <span class="waste-address">33 rue Elizaldia</span>
+    </div>
+    <div class="waste-grid">
+      <div class="img-wrap">
+        <img src="images/image_83.jpg" alt="Local poubelles jaunes" loading="lazy"/>
+        <div class="img-caption">Local · 33 rue Elizaldia</div>
+      </div>
+      <div class="img-wrap">
+        <img src="images/image_84.jpg" alt="Carte itinéraire" loading="lazy"/>
+        <div class="img-caption">🚶 Itinéraire à pied · 2 min</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="waste-block">
+    <div class="waste-title">
+      🍾 Verre
+      <span class="waste-address">4 rue Elizaldia</span>
+    </div>
+    <div class="waste-grid">
+      <div class="img-wrap">
+        <img src="images/image_85.jpg" alt="Conteneurs verre" loading="lazy"/>
+        <div class="img-caption">Conteneurs verre · 4 rue Elizaldia</div>
+      </div>
+      <div class="img-wrap">
+        <img src="images/image_86.jpg" alt="Carte itinéraire" loading="lazy"/>
+        <div class="img-caption">🚶 Itinéraire à pied · 4 min</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── 07 LUMIÈRES ────────────────────────────────────────────────────────── -->
+<div class="section" id="lumieres">
+  <div class="s-header">
+    <span class="s-num">07</span>
+    <h2 class="s-title">Lumières &amp; <em>domotique</em></h2>
+  </div>
+  <div class="alert alert-info">
+    <strong>💡 Info :</strong> Certaines lumières sont connectées et ne se commandent pas avec des interrupteurs classiques.
+  </div>
+
+  <ul class="light-list" style="margin-top:1.2rem">
+    <li class="light-item">
+      <div>
+        <div class="light-name">Couloir</div>
+        <div style="font-size:.78rem;color:var(--muted)">Automatique</div>
+      </div>
+      <div>Gestion automatique selon la luminosité et l'heure — rien à faire.</div>
+    </li>
+    <li class="light-item">
+      <div>
+        <div class="light-name">Buanderie</div>
+        <div style="font-size:.78rem;color:var(--muted)">Automatique</div>
+      </div>
+      <div>Gestion automatique selon la luminosité et l'heure — rien à faire.</div>
+    </li>
+    <li class="light-item">
+      <div>
+        <div class="light-name">Jardin</div>
+        <div style="font-size:.78rem;color:var(--muted)">Solaire</div>
+      </div>
+      <div>Allumé la nuit automatiquement selon le soleil.</div>
+    </li>
+    <li class="light-item">
+      <div>
+        <div class="light-name">Entrée extérieur</div>
+        <div style="font-size:.78rem;color:var(--muted)">Capteur</div>
+      </div>
+      <div>Détecteur de mouvement et de luminosité.</div>
+    </li>
+    <li class="light-item">
+      <div>
+        <div class="light-name">Terrasse</div>
+        <div style="font-size:.78rem;color:var(--muted)">Commande vocale</div>
+      </div>
+      <div>Via HomePod du salon : <span class="light-cmd">« Siri, allume les lumières du jardin »</span></div>
+    </li>
+    <li class="light-item">
+      <div>
+        <div class="light-name">Ambiance salon</div>
+        <div style="font-size:.78rem;color:var(--muted)">Auto + Siri</div>
+      </div>
+      <div>Lance automatiquement au crépuscule. Sinon : <span class="light-cmd">« Siri, lance la scène Chill »</span></div>
+    </li>
+    <li class="light-item">
+      <div>
+        <div class="light-name">Volets · matin</div>
+        <div style="font-size:.78rem;color:var(--muted)">Siri + boutons</div>
+      </div>
+      <div>Commande vocale : <span class="light-cmd">« Siri, Bonjour »</span> — ou via les boutons séparément.</div>
+    </li>
+    <li class="light-item">
+      <div>
+        <div class="light-name">Extinction générale</div>
+        <div style="font-size:.78rem;color:var(--muted)">Siri</div>
+      </div>
+      <div>Éteint tout, rentre les stores, ferme les volets : <span class="light-cmd">« Siri, Bonne Nuit »</span></div>
+    </li>
+  </ul>
+
+  <p class="body" style="margin-top:1.5rem;font-weight:500">Stores de la pergola (manger à l'ombre) :</p>
+  <p class="body">Télécommande Somfy — <strong>flèche ↑ pour sortir</strong> les stores, <strong>flèche ↓ pour les rentrer</strong>.</p>
+  <div class="img-wrap" style="max-width:340px">
+    <img src="images/image_87.jpg" alt="Télécommande Somfy stores" loading="lazy"/>
+    <div class="img-caption">Télécommande Somfy · Stores pergola</div>
+  </div>
+</div>
+
+<!-- ── 08 PISCINE ─────────────────────────────────────────────────────────── -->
+<div class="section" id="piscine">
+  <div class="s-header">
+    <span class="s-num">08</span>
+    <h2 class="s-title">Piscine</h2>
+  </div>
+  <div class="alert alert-red">
+    <strong>⚠️ Important :</strong> Ne mettez jamais les clips pour fermer les rideaux. Piscine fermée si les enfants ne savent pas nager.
+  </div>
+  <p class="body">Ouverture via la clé. Les jeux de piscine sont dans un placard du couloir à côté de l'entrée.</p>
+  <div class="video-cards-row">
+    <div class="video-card" onclick="openVmod('https://www.youtube.com/embed/EYEjD6rmmCk?autoplay=1','Ouverture du rideau de piscine')">
+      <img src="images/thumb-cover.svg" class="video-thumb" alt="Ouverture rideau piscine"/>
+      <div class="video-play-btn"></div>
+      <div class="video-card-label">
+        <div class="video-card-title">Ouverture du rideau</div>
+        <div class="video-card-sub">Rideau de piscine · cliquer pour lancer</div>
+      </div>
+    </div>
+    <div class="video-card" onclick="openVmod('https://www.youtube.com/embed/ZcVdgRDKydM?autoplay=1','Robot nettoyage piscine')">
+      <img src="images/thumb-robot.svg" class="video-thumb" alt="Robot nettoyage piscine"/>
+      <div class="video-play-btn"></div>
+      <div class="video-card-label">
+        <div class="video-card-title">Robot nettoyage</div>
+        <div class="video-card-sub">Entretien piscine · cliquer pour lancer</div>
+      </div>
+    </div>
+    <div class="video-card" onclick="openVmod('https://www.youtube.com/embed/WNyj5xbb-dY?autoplay=1','Rappel du robot — sortir de l\'eau')">
+      <img src="images/thumb-recall.svg" class="video-thumb" alt="Rappel robot hors de l'eau"/>
+      <div class="video-play-btn"></div>
+      <div class="video-card-label">
+        <div class="video-card-title">Rappel du robot</div>
+        <div class="video-card-sub">Sortir de l'eau · cliquer pour lancer</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── 09 BBQ ──────────────────────────────────────────────────────────────── -->
+<div class="section" id="bbq">
+  <div class="s-header">
+    <span class="s-num">09</span>
+    <h2 class="s-title">BBQ &amp; <em>Plancha</em></h2>
+  </div>
+  <p class="body">Plancha à gaz et BBQ disponibles dans le jardin. Si plus de gaz, prenez une nouvelle bonbonne — les propriétaires remboursent.</p>
+  <div class="img-wrap" style="max-width:420px">
+    <img src="images/image_88.jpg" alt="BBQ dans le jardin" loading="lazy"/>
+    <div class="img-caption">BBQ &amp; Plancha · coin jardin</div>
+  </div>
+</div>
+
+<!-- ── 10 DEFENDER ────────────────────────────────────────────────────────── -->
+<div class="section" id="defender">
+  <div class="s-header">
+    <span class="s-num">10</span>
+    <h2 class="s-title">Land Rover <em>Defender</em></h2>
+  </div>
+  <p class="body">Les clés du Land Rover Defender se trouvent dans le panier blanc sur le meuble bleu — vous pouvez l'utiliser librement.</p>
+  <div class="img-wrap" style="margin:1.2rem 0;max-width:480px">
+    <img src="images/defender.jpg" alt="Land Rover Defender Guéthary" loading="lazy" style="width:100%;border-radius:8px;display:block"/>
+  </div>
+  <div class="alert alert-warn">
+    <strong>🚗 À savoir :</strong> Il fait <strong>2 m de haut</strong> — ne passe pas dans les parkings souterrains ni dans les parkings de plage avec barrière à 1m90. Se conduit comme un gros camion diesel, embrayage dur. <em>Mais c'est un gros kiffe !</em>
+  </div>
+</div>
+
+</div><!-- /wrap -->
+
+<footer>
+  <div class="fl">Txorien Etxea · Guéthary</div>
+  <div class="fr">69 Chem. de la Laiterie · 64210 Guéthary<br/>Page privée · Hôtes uniquement</div>
+</footer>
+<!-- Modal vidéo -->
+<div id="vmod" onclick="closeVmod(event)">
+  <div id="vmod-inner">
+    <button id="vmod-close" onclick="closeVmod()">✕</button>
+    <iframe id="vmodIframe" src="" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>
+    <div id="vmod-title"></div>
+  </div>
+</div>
+
+<script>
+  function openVmod(url, title) {
+    document.getElementById('vmodIframe').src = url;
+    document.getElementById('vmod-title').textContent = title || '';
+    document.getElementById('vmod').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeVmod(e) {
+    if (e && e.target !== document.getElementById('vmod') && e.target !== document.getElementById('vmod-close')) return;
+    document.getElementById('vmodIframe').src = '';
+    document.getElementById('vmod').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeVmod({}); });
+</script>
+
+<script>
+  const PWD = "TxorienEtxea2025";
+  const STORAGE_KEY = "txorien_access";
+
+  function showContent() {
+    document.getElementById('lock').classList.add('unlocked');
+    document.getElementById('content').classList.add('visible');
+  }
+
+  function unlock() {
+    const val = document.getElementById('pwd').value.trim();
+    if (val === PWD) {
+      try { localStorage.setItem(STORAGE_KEY, '1'); } catch(e) {}
+      showContent();
+    } else {
+      const err = document.getElementById('lock-err');
+      err.textContent = 'Mot de passe incorrect';
+      document.getElementById('pwd').value = '';
+      document.getElementById('pwd').focus();
+      setTimeout(() => { err.textContent = ''; }, 3000);
+    }
+  }
+
+  // Entrée clavier
+  document.getElementById('pwd').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') unlock();
+  });
+
+  // Déjà authentifié ?
+  try {
+    if (localStorage.getItem(STORAGE_KEY) === '1') {
+      showContent();
+    } else {
+      document.getElementById('pwd').focus();
+    }
+  } catch(e) {
+    document.getElementById('pwd').focus();
+  }
+</script>
+
+</body>
+</html>

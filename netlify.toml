@@ -1,0 +1,12 @@
+[build]
+  functions = "netlify/functions"
+
+[[redirects]]
+  from = "/sejour"
+  to = "/.netlify/functions/sejour"
+  status = 200
+
+[[redirects]]
+  from = "/unlock"
+  to = "/.netlify/functions/unlock"
+  status = 200

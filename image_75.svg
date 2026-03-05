@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400">
+  <rect width="700" height="400" fill="#2A6E3F"/>
+  <rect x="0" y="300" width="700" height="100" fill="#1A4E2F"/>
+  <!-- étagères -->
+  <rect x="60" y="100" width="580" height="8" fill="rgba(255,255,255,0.15)" rx="2"/>
+  <rect x="60" y="180" width="580" height="8" fill="rgba(255,255,255,0.15)" rx="2"/>
+  <rect x="60" y="260" width="580" height="8" fill="rgba(255,255,255,0.15)" rx="2"/>
+  <!-- produits rangée 1 -->
+  <rect x="80" y="65" width="30" height="35" fill="#E74C3C" rx="3"/>
+  <rect x="120" y="68" width="28" height="32" fill="#F39C12" rx="3"/>
+  <rect x="158" y="62" width="32" height="38" fill="#27AE60" rx="3"/>
+  <rect x="200" y="70" width="26" height="30" fill="#2980B9" rx="3"/>
+  <rect x="236" y="65" width="30" height="35" fill="#8E44AD" rx="3"/>
+  <rect x="276" y="68" width="28" height="32" fill="#E67E22" rx="3"/>
+  <rect x="314" y="62" width="32" height="38" fill="#C0392B" rx="3"/>
+  <rect x="356" y="65" width="30" height="35" fill="#16A085" rx="3"/>
+  <rect x="396" y="70" width="26" height="30" fill="#F1C40F" rx="3"/>
+  <rect x="432" y="65" width="30" height="35" fill="#E74C3C" rx="3"/>
+  <rect x="472" y="68" width="28" height="32" fill="#2ECC71" rx="3"/>
+  <rect x="510" y="62" width="32" height="38" fill="#3498DB" rx="3"/>
+  <!-- produits rangée 2 -->
+  <rect x="80" y="145" width="30" height="35" fill="#27AE60" rx="3"/>
+  <rect x="120" y="148" width="28" height="32" fill="#E74C3C" rx="3"/>
+  <rect x="158" y="145" width="32" height="35" fill="#F39C12" rx="3"/>
+  <rect x="200" y="150" width="26" height="30" fill="#8E44AD" rx="3"/>
+  <rect x="240" y="145" width="30" height="35" fill="#2980B9" rx="3"/>
+  <rect x="280" y="148" width="28" height="32" fill="#E67E22" rx="3"/>
+  <rect x="318" y="142" width="32" height="38" fill="#16A085" rx="3"/>
+  <rect x="360" y="145" width="30" height="35" fill="#C0392B" rx="3"/>
+  <rect x="400" y="150" width="26" height="30" fill="#F1C40F" rx="3"/>
+  <rect x="436" y="145" width="30" height="35" fill="#27AE60" rx="3"/>
+  <!-- logo spar -->
+  <text x="350" y="350" font-family="Arial Black, sans-serif" font-size="48" fill="white" text-anchor="middle" font-weight="900">SPAR</text>
+  <text x="350" y="385" font-family="Arial, sans-serif" font-size="14" fill="rgba(255,255,255,0.6)" text-anchor="middle" letter-spacing="3">OUVERT 7J/7 · 8H-20H</text>
+</svg>

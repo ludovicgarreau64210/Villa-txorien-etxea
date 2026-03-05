@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400">
+  <rect width="700" height="400" fill="#1A2E3F"/>
+  <!-- vagues -->
+  <path d="M0 280 Q175 230 350 270 Q525 310 700 260 L700 400 L0 400Z" fill="#0E1E2C"/>
+  <path d="M0 300 Q175 255 350 290 Q525 325 700 280 L700 400 L0 400Z" fill="#0A1520"/>
+  <!-- planche de surf -->
+  <ellipse cx="350" cy="200" rx="28" ry="130" fill="#E8C84A" transform="rotate(-20 350 200)"/>
+  <ellipse cx="350" cy="200" rx="22" ry="120" fill="#F0D860" transform="rotate(-20 350 200)"/>
+  <line x1="300" y1="120" x2="395" y2="285" stroke="rgba(0,0,0,0.3)" stroke-width="2"/>
+  <line x1="307" y1="110" x2="400" y2="278" stroke="rgba(0,0,0,0.15)" stroke-width="1.5"/>
+  <!-- tasse café -->
+  <rect x="500" y="220" width="60" height="50" rx="6" fill="white" opacity="0.9"/>
+  <path d="M560 235 Q580 240 580 255 Q580 270 560 272" stroke="rgba(0,0,0,0.3)" stroke-width="3" fill="none"/>
+  <ellipse cx="530" cy="220" rx="30" ry="8" fill="rgba(0,0,0,0.2)"/>
+  <path d="M518 232 Q530 228 542 232" stroke="#8B5E3C" stroke-width="2" fill="none"/>
+  <!-- texte -->
+  <text x="350" y="355" font-family="Arial Black, sans-serif" font-size="28" fill="white" text-anchor="middle" font-weight="900" letter-spacing="3">PARLEMENTIA</text>
+  <text x="350" y="382" font-family="Arial, sans-serif" font-size="13" fill="rgba(255,255,255,0.5)" text-anchor="middle" letter-spacing="4">SURF · SKATE · COFFEE</text>
+</svg>
