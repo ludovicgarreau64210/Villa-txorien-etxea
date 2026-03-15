@@ -4,6 +4,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Commerces à Guéthary · Txorien Etxea</title>
+  <meta name="description" content="Commerces à proximité de la Villa Txorien Etxea à Guéthary : boulangerie, supérette, boutiques. Tout à 5 minutes à pied."/>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Libre+Franklin:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
     
@@ -252,7 +253,7 @@
         <div class="commerce-name">Ederra</div>
         <div class="commerce-loc">545 avenue du Général de Gaulle</div>
         <p class="commerce-desc">Mode féminine éthique et élégante. Créations en petites séries, mettant en avant le savoir-faire local. L'ambiance y est raffinée et chaleureuse — la boutique de référence pour une mode responsable au Pays Basque.</p>
-        <a href="https://www.ederra.fr/" target="_blank" class="commerce-link">ederra.fr</a>
+        <a href="https://www.ederra.fr/" target="_blank" rel="noopener noreferrer" class="commerce-link">ederra.fr</a>
       </div>
     </div>
 
@@ -263,7 +264,7 @@
         <div class="commerce-name">Parlementia</div>
         <div class="commerce-loc">4 chemin du Port</div>
         <p class="commerce-desc">Boutique streetwear indépendante qui rend hommage à la mythique vague de Parlementia. Vêtements et accessoires inspirés du surf, du skate et de la culture urbaine. Sert également de coffee shop avec terrasse vue océan — idéal pour un latte matinal.</p>
-        <a href="https://parlementia-store.com" target="_blank" class="commerce-link">parlementia-store.com</a>
+        <a href="https://parlementia-store.com" target="_blank" rel="noopener noreferrer" class="commerce-link">parlementia-store.com</a>
       </div>
       <div class="commerce-img">
         <img src="images/parlementia-shop.jpg" alt="Parlementia surf shop Guéthary" loading="lazy"/>
@@ -279,7 +280,7 @@
   <div class="wrap">
     <h2>Et bien d'autres adresses…</h2>
     <p>Restaurants, boutiques, activités — toute la sélection Guéthary sur une seule carte.</p>
-    <a href="https://maps.app.goo.gl/BoYND5Do1ARHPY1z9" target="_blank" class="map-btn">Ouvrir la carte complète</a>
+    <a href="https://maps.app.goo.gl/BoYND5Do1ARHPY1z9" target="_blank" rel="noopener noreferrer" class="map-btn">Ouvrir la carte complète</a>
   </div>
 </div>
 
@@ -304,16 +305,6 @@ var chemin=[[43.42198,-1.60536],[43.42215,-1.60534],[43.42235,-1.60525],[43.4225
 L.polyline(chemin,{color:'#2E6B8A',weight:6,opacity:.85,lineCap:'round',lineJoin:'round'}).addTo(map);
 var b=L.divIcon({className:'',html:'<div style="background:#fff;color:#1A4A5E;border-radius:20px;padding:.25rem .65rem;font-size:.72rem;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,.2);white-space:nowrap">5 min a pied</div>',iconSize:[90,26],iconAnchor:[45,13]});
 L.marker([43.42255,-1.60512],{icon:b,interactive:false}).addTo(map);
-</script>
-<script>
-var map=L.map("leaflet-map",{scrollWheelZoom:false}).setView([43.4190,-1.6125],16);
-L.tileLayer("https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png",{attribution:"OpenStreetMap",maxZoom:19}).addTo(map);
-function mkIcon(emoji,bg){return L.divIcon({className:"",html:"<div style=background:"+bg+";color:#fff;border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;font-size:1rem;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.3)>"+emoji+"</div>",iconSize:[34,34],iconAnchor:[17,17]});}
-L.marker([43.4165,-1.6138],{icon:mkIcon("🏠","#1A4A5E")}).addTo(map).bindPopup("<b>Villa Txorien Etxea</b><br>69 Chemin de la Laiterie");
-L.marker([43.4208,-1.6118],{icon:mkIcon("🛒","#e8593a")}).addTo(map).bindPopup("<b>Spar</b>");
-L.marker([43.4218,-1.6112],{icon:mkIcon("🥖","#d4882a")}).addTo(map).bindPopup("<b>La Ronde des Pains</b>");
-var chemin=[[43.4165,-1.6138],[43.4170,-1.6138],[43.4176,-1.6135],[43.4182,-1.6130],[43.4188,-1.6125],[43.4195,-1.6120],[43.4200,-1.6118],[43.4208,-1.6118],[43.4218,-1.6112]];
-L.polyline(chemin,{color:"#2E6B8A",weight:6,opacity:.85,lineCap:"round",lineJoin:"round"}).addTo(map);
 </script>
 </body>
 </html>
