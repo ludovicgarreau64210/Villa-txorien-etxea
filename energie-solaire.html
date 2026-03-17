@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Autonomie énergétique · Txorien Etxea</title>
+  <meta name="description" content="La Villa Txorien Etxea fonctionne en autonomie énergétique grâce à des panneaux solaires photovoltaïques et une batterie de stockage. Énergie 100 % renouvelable à Guéthary."/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Libre+Franklin:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    
+    :root{--blanc:#FEFCF8;--creme:#EEF4F7;--beige:#D6E6EF;--sable:#A8C8D8;--terre:#4A7A92;--brun:#1A4A5E;--luzien:#2E6B8A;--luzien-clair:#4A8FAD;--luzien-fonce:#1A4A5E;--luzien-pale:#D6E6EF;--luzien-ultra:#EEF4F7;--encre:#0C2330}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Libre Franklin',sans-serif;background:var(--blanc);color:var(--brun);overflow-x:hidden}
+    img{display:block;max-width:100%;height:auto}
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:1.1rem 2.5rem;display:flex;align-items:center;justify-content:space-between;background:rgba(254,252,248,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--luzien-pale);box-shadow:0 2px 20px rgba(30,95,122,.07)}
+    .logo{font-family:'Cormorant',serif;font-size:1.05rem;font-weight:400;letter-spacing:.05em;color:var(--luzien-fonce);text-decoration:none;line-height:1.25}
+    .logo small{display:block;font-family:'Libre Franklin',sans-serif;font-size:.56rem;font-weight:300;letter-spacing:.2em;text-transform:uppercase;opacity:.5;margin-top:2px}
+    .nav-links{list-style:none;display:flex;gap:1.5rem;align-items:center}
+    .nav-links a{font-size:.63rem;font-weight:400;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;color:var(--terre);transition:color .3s}
+    .nav-links a:hover,.nav-links a.active{color:var(--luzien)}
+    .wrap{max-width:1100px;margin:0 auto;padding:0 2.5rem}
+    .ey{display:flex;align-items:center;gap:.8rem;font-size:.62rem;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:var(--luzien);margin-bottom:.8rem}
+    .ey::before{content:'';width:20px;height:1px;background:var(--sable)}
+    h1.t{font-family:'Cormorant',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:300;line-height:1.15;color:var(--brun)}
+    h1.t em{font-style:italic;color:var(--luzien)}
+    h2.t{font-family:'Cormorant',serif;font-size:clamp(1.5rem,2.5vw,2rem);font-weight:300;line-height:1.15;color:var(--brun)}
+    h2.t em{font-style:italic;color:var(--luzien)}
+    .bod{font-size:.88rem;font-weight:300;line-height:1.95;color:var(--terre)}
+    footer{background:var(--encre);padding:1.8rem 2.5rem;display:flex;justify-content:space-between;align-items:center}
+    .fl{font-family:'Cormorant',serif;font-size:1rem;font-style:italic;font-weight:300;color:rgba(255,255,255,.4)}
+    .fr{font-size:.6rem;color:rgba(255,255,255,.2);letter-spacing:.12em;text-align:right;line-height:1.8}
+    .rv{opacity:0;transform:translateY(18px);transition:opacity .7s,transform .7s}
+    .rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}
+    .rv.in{opacity:1;transform:none}
+    @media(max-width:640px){.wrap{padding:0 1.2rem}footer{flex-direction:column;gap:.6rem;text-align:center}}
+
+
+    .page-hero{
+      padding:8rem 0 4rem;
+      background:var(--luzien-fonce);
+      position:relative;overflow:hidden;
+    }
+    .page-hero .ey{color:rgba(255,255,255,.35)}
+    .page-hero .ey::before{background:rgba(255,255,255,.2)}
+    .page-hero h1.t{color:#fff}
+    .page-hero h1.t em{color:var(--luzien-clair)}
+    .page-hero .bod{color:rgba(255,255,255,.5);max-width:520px;margin-top:1rem}
+    .page-hero-body{position:relative;z-index:1}
+
+    /* ENERGY SECTION */
+    .energy-section{padding:5rem 0 6rem}
+
+    /* ENERGY GRID */
+    .energy-grid{
+      display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;
+      margin-top:2.5rem;
+    }
+    .energy-card{
+      padding:2.2rem 2.5rem;
+      background:var(--luzien-ultra);
+      border:1px solid var(--beige);
+      transition:background .3s,transform .3s;
+    }
+    .energy-card:hover{background:var(--luzien-pale);transform:translateY(-3px)}
+    .energy-icon{font-size:1.8rem;margin-bottom:.8rem}
+    .energy-name{font-family:'Cormorant',serif;font-size:1.35rem;font-weight:400;color:var(--brun);margin-bottom:.4rem}
+    .energy-desc{font-size:.83rem;font-weight:300;line-height:1.9;color:var(--terre)}
+
+    /* HIGHLIGHT BLOCK */
+    .highlight-block{
+      background:var(--luzien-fonce);
+      padding:4.5rem 0;
+    }
+    .highlight-inner{
+      display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;
+    }
+    .highlight-block .ey{color:rgba(255,255,255,.3)}
+    .highlight-block .ey::before{background:rgba(255,255,255,.2)}
+    .highlight-block h2.t{color:#fff}
+    .highlight-block h2.t em{color:var(--luzien-clair)}
+    .highlight-block .bod{color:rgba(255,255,255,.5);margin-top:1rem}
+    .highlight-stat{
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      text-align:center;
+      padding:2.5rem;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.1);
+    }
+    .highlight-stat-icon{font-size:3rem;margin-bottom:1rem}
+    .highlight-stat-number{font-family:'Cormorant',serif;font-size:2.8rem;font-weight:300;color:#fff;line-height:1}
+    .highlight-stat-label{font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:.5rem}
+
+    @media(max-width:760px){
+      .energy-grid{grid-template-columns:1fr}
+      .highlight-inner{grid-template-columns:1fr;gap:2.5rem}
+    }
+  </style>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Villa Txorien Etxea<small>Guéthary · Pays basque</small></a>
+  <ul class="nav-links">
+    <li><a href="index.html">La villa</a></li>
+    <li><a href="restos-guethary.html">Restaurants</a></li>
+    <li><a href="commerces-guethary.html">Commerces</a></li>
+    <li><a href="energie-solaire.html" class="active">Énergie</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="wrap page-hero-body">
+    <div class="ey">Engagement écologique</div>
+    <h1 class="t">Maison autonome<br/><em>en énergie</em></h1>
+    <p class="bod">La Villa Txorien Etxea fonctionne en autonomie énergétique grâce à une installation solaire complète — panneaux photovoltaïques et batterie de stockage.</p>
+  </div>
+</div>
+
+<!-- SECTION 1 — INTRODUCTION -->
+<section class="energy-section">
+  <div class="wrap">
+    <div class="rv">
+      <div class="ey">Énergie solaire</div>
+      <h1 class="t" style="font-size:clamp(1.6rem,2.8vw,2.3rem)">Une villa alimentée par le <em>soleil</em></h1>
+      <p class="bod" style="margin-top:1rem;max-width:680px">La maison est équipée de panneaux solaires installés sur le toit qui captent la lumière du soleil et la convertissent en électricité. Grâce à cette installation, la villa fonctionne en totale autonomie énergétique. Pendant votre séjour, vous bénéficiez d'une énergie propre et 100 % renouvelable — sans aucun compromis sur le confort.</p>
+    </div>
+
+    <!-- FEATURE GRID -->
+    <div class="energy-grid">
+      <div class="energy-card rv">
+        <div class="energy-icon">☀️</div>
+        <div class="energy-name">Panneaux solaires</div>
+        <p class="energy-desc">Installés sur le toit, les panneaux photovoltaïques captent l'énergie solaire tout au long de la journée pour alimenter l'ensemble de la maison.</p>
+      </div>
+      <div class="energy-card rv d1">
+        <div class="energy-icon">🔋</div>
+        <div class="energy-name">Batterie de stockage</div>
+        <p class="energy-desc">Un système de batterie stocke l'excédent d'énergie produit pendant la journée pour une utilisation la nuit et lors des journées nuageuses.</p>
+      </div>
+      <div class="energy-card rv">
+        <div class="energy-icon">🔌</div>
+        <div class="energy-name">Autonomie complète</div>
+        <p class="energy-desc">La maison fonctionne indépendamment du réseau électrique, garantissant une alimentation continue et sans interruption.</p>
+      </div>
+      <div class="energy-card rv d1">
+        <div class="energy-icon">🌿</div>
+        <div class="energy-name">Zéro émission</div>
+        <p class="energy-desc">100 % d'énergie renouvelable, zéro émission de carbone liée à la consommation électrique de la villa.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3 — HIGHLIGHT BLOCK -->
+<section class="highlight-block">
+  <div class="wrap">
+    <div class="highlight-inner">
+      <div class="rv">
+        <div class="ey">Tourisme durable</div>
+        <h2 class="t">Un engagement pour <em>la planète</em></h2>
+        <p class="bod">Les propriétaires ont fait le choix d'investir dans l'énergie solaire dans le cadre de leur engagement en faveur du tourisme durable. Préserver la beauté de la côte basque, réduire l'empreinte carbone de chaque séjour et offrir aux voyageurs une expérience en harmonie avec la nature — voilà la philosophie qui guide cette maison.</p>
+      </div>
+      <div class="rv d1">
+        <div class="highlight-stat">
+          <div class="highlight-stat-icon">☀️</div>
+          <div class="highlight-stat-number">100 %</div>
+          <div class="highlight-stat-label">Énergie renouvelable</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="fl">Txorien Etxea · Guéthary</div>
+  <div class="fr">69 Chem. de la Laiterie · 64210 Guéthary<br/>© 2025 · Villa familiale</div>
+</footer>
+
+<script>
+const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in')}),{threshold:.08});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+</script>
+
+</body>
+</html>
