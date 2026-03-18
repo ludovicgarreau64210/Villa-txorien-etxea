@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Activités au Pays Basque · Txorien Etxea</title>
+  <meta name="description" content="Activités et sorties autour de la Villa Txorien Etxea à Guéthary : surf, randonnée, villages basques, gastronomie, culture et sports."/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Libre+Franklin:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    
+    :root{--blanc:#FEFCF8;--creme:#EEF4F7;--beige:#D6E6EF;--sable:#A8C8D8;--terre:#4A7A92;--brun:#1A4A5E;--luzien:#2E6B8A;--luzien-clair:#4A8FAD;--luzien-fonce:#1A4A5E;--luzien-pale:#D6E6EF;--luzien-ultra:#EEF4F7;--encre:#0C2330}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Libre Franklin',sans-serif;background:var(--blanc);color:var(--brun);overflow-x:hidden}
+    img{display:block;max-width:100%;height:auto}
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:1.1rem 2.5rem;display:flex;align-items:center;justify-content:space-between;background:rgba(254,252,248,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--luzien-pale);box-shadow:0 2px 20px rgba(30,95,122,.07)}
+    .logo{font-family:'Cormorant',serif;font-size:1.05rem;font-weight:400;letter-spacing:.05em;color:var(--luzien-fonce);text-decoration:none;line-height:1.25}
+    .logo small{display:block;font-family:'Libre Franklin',sans-serif;font-size:.56rem;font-weight:300;letter-spacing:.2em;text-transform:uppercase;opacity:.5;margin-top:2px}
+    .nav-links{list-style:none;display:flex;gap:1.5rem;align-items:center}
+    .nav-links a{font-size:.63rem;font-weight:400;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;color:var(--terre);transition:color .3s}
+    .nav-links a:hover,.nav-links a.active{color:var(--luzien)}
+    .wrap{max-width:1100px;margin:0 auto;padding:0 2.5rem}
+    .ey{display:flex;align-items:center;gap:.8rem;font-size:.62rem;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:var(--luzien);margin-bottom:.8rem}
+    .ey::before{content:'';width:20px;height:1px;background:var(--sable)}
+    h1.t,h2.t{font-family:'Cormorant',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:300;line-height:1.15;color:var(--brun)}
+    h2.t{font-size:clamp(1.5rem,2.5vw,2rem)}
+    h1.t em,h2.t em{font-style:italic;color:var(--luzien)}
+    .bod{font-size:.88rem;font-weight:300;line-height:1.95;color:var(--terre)}
+    footer{background:var(--encre);padding:1.8rem 2.5rem;display:flex;justify-content:space-between;align-items:center;margin-top:0}
+    .fl{font-family:'Cormorant',serif;font-size:1rem;font-style:italic;font-weight:300;color:rgba(255,255,255,.4)}
+    .fr{font-size:.6rem;color:rgba(255,255,255,.2);letter-spacing:.12em;text-align:right;line-height:1.8}
+    .rv{opacity:0;transform:translateY(18px);transition:opacity .7s,transform .7s}
+    .rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}
+    .rv.in{opacity:1;transform:none}
+    @media(max-width:640px){.wrap{padding:0 1.2rem}footer{flex-direction:column;gap:.6rem;text-align:center}.fr{text-align:center}}
+
+
+    /* PAGE HERO */
+    .page-hero{
+      padding:8rem 0 4rem;
+      background:var(--luzien-fonce);
+      position:relative;
+      overflow:hidden;
+    }
+    .page-hero::before{
+      content:'';
+      position:absolute;
+      inset:0;
+      background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 200'%3E%3Cpath d='M0,100 C200,60 400,140 600,80 C700,50 750,120 800,100 L800,200 L0,200Z' fill='rgba(74,143,173,0.08)'/%3E%3C/svg%3E") bottom/cover no-repeat;
+    }
+    .page-hero .ey{color:rgba(255,255,255,.35)}
+    .page-hero .ey::before{background:rgba(255,255,255,.2)}
+    .page-hero h1.t{color:#fff}
+    .page-hero h1.t em{color:var(--luzien-clair)}
+    .page-hero .bod{color:rgba(255,255,255,.5);max-width:560px;margin-top:1rem}
+    .page-hero-body{position:relative;z-index:1}
+
+    /* ACTIVITY SECTIONS */
+    .activity-section{padding:5rem 0 6rem}
+    .activity-section-dark{
+      background:var(--luzien-fonce);
+      padding:4.5rem 0;
+    }
+
+    /* ACTIVITY GRID */
+    .activity-grid{
+      display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;
+      margin-top:2.5rem;
+    }
+    .activity-card{
+      padding:2.2rem 2.5rem;
+      background:var(--luzien-ultra);
+      border:1px solid var(--beige);
+      transition:background .3s,transform .3s;
+    }
+    .activity-card:hover{background:var(--luzien-pale);transform:translateY(-3px)}
+    .activity-emoji{font-size:1.8rem;margin-bottom:.8rem}
+    .activity-name{font-family:'Cormorant',serif;font-size:1.35rem;font-weight:400;color:var(--brun);margin-bottom:.4rem}
+    .activity-loc{font-size:.63rem;letter-spacing:.13em;text-transform:uppercase;color:var(--sable);margin-bottom:.8rem;display:flex;align-items:center;gap:.4rem}
+    .activity-loc::before{content:'📍';font-size:.72rem}
+    .activity-desc{font-size:.83rem;font-weight:300;line-height:1.9;color:var(--terre)}
+    .activity-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem}
+    .tag{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;padding:.22rem .7rem;background:var(--luzien-pale);color:var(--luzien);border-radius:2px}
+
+    /* DARK SECTION CARDS */
+    .activity-section-dark .activity-grid{background:rgba(255,255,255,.08);gap:1px}
+    .activity-section-dark .activity-card{
+      background:rgba(255,255,255,.04);
+      border:none;
+    }
+    .activity-section-dark .activity-card:hover{background:rgba(255,255,255,.08);transform:none}
+    .activity-section-dark .activity-name{color:#fff}
+    .activity-section-dark .activity-loc{color:rgba(255,255,255,.35)}
+    .activity-section-dark .activity-loc::before{opacity:.6}
+    .activity-section-dark .activity-desc{color:rgba(255,255,255,.5)}
+    .activity-section-dark .activity-tags .tag{background:rgba(255,255,255,.1);color:rgba(255,255,255,.6)}
+    .activity-section-dark .ey{color:rgba(255,255,255,.3)}
+    .activity-section-dark .ey::before{background:rgba(255,255,255,.2)}
+    .activity-section-dark h2.t{color:#fff}
+    .activity-section-dark h2.t em{color:var(--luzien-clair)}
+
+    @media(max-width:760px){
+      .activity-grid{grid-template-columns:1fr}
+    }
+  </style>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Villa Txorien Etxea<small>Guéthary · Pays basque</small></a>
+  <ul class="nav-links">
+    <li><a href="index.html">La villa</a></li>
+    <li><a href="restos-guethary.html">Restaurants</a></li>
+    <li><a href="commerces-guethary.html">Commerces</a></li>
+    <li><a href="activites-pays-basque.html" class="active">Activités</a></li>
+    <li><a href="energie-solaire.html">Énergie</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="wrap page-hero-body">
+    <div class="ey">Pays Basque</div>
+    <h1 class="t">Activités<br/><em>autour de la villa</em></h1>
+    <p class="bod">Surf, randonnée, villages pittoresques, gastronomie, culture — le Pays Basque regorge d'expériences inoubliables à deux pas de la villa.</p>
+  </div>
+</div>
+
+<!-- SECTION 1 — SURF & PLAGES -->
+<section class="activity-section">
+  <div class="wrap">
+    <div class="rv">
+      <div class="ey">Océan</div>
+      <h2 class="t">Surf <em>&amp; plages</em></h2>
+    </div>
+    <div class="activity-grid">
+      <div class="activity-card rv">
+        <div class="activity-emoji">🏄</div>
+        <div class="activity-name">Parlementia</div>
+        <div class="activity-loc">À 5 min à pied</div>
+        <p class="activity-desc">Spot de surf mythique de Guéthary, vagues puissantes pour surfeurs confirmés.</p>
+        <div class="activity-tags"><span class="tag">Surf</span><span class="tag">Confirmé</span><span class="tag">Guéthary</span></div>
+      </div>
+      <div class="activity-card rv d1">
+        <div class="activity-emoji">🏖️</div>
+        <div class="activity-name">Plage de Cenitz</div>
+        <div class="activity-loc">À 5 min à pied</div>
+        <p class="activity-desc">Crique sauvage entre Guéthary et Saint-Jean-de-Luz, idéale pour les familles.</p>
+        <div class="activity-tags"><span class="tag">Famille</span><span class="tag">Baignade</span><span class="tag">Crique</span></div>
+      </div>
+      <div class="activity-card rv">
+        <div class="activity-emoji">🌊</div>
+        <div class="activity-name">Alcyons</div>
+        <div class="activity-loc">À 5 min à pied</div>
+        <p class="activity-desc">Jetée et spot de baignade au cœur du village. Coucher de soleil spectaculaire.</p>
+        <div class="activity-tags"><span class="tag">Baignade</span><span class="tag">Coucher de soleil</span><span class="tag">Village</span></div>
+      </div>
+      <div class="activity-card rv d1">
+        <div class="activity-emoji">🏄‍♀️</div>
+        <div class="activity-name">Côte des Basques, Biarritz</div>
+        <div class="activity-loc">À 15 min en voiture</div>
+        <p class="activity-desc">Plage emblématique, écoles de surf pour tous niveaux.</p>
+        <div class="activity-tags"><span class="tag">Surf</span><span class="tag">École</span><span class="tag">Biarritz</span></div>
+      </div>
+      <div class="activity-card rv">
+        <div class="activity-emoji">🐚</div>
+        <div class="activity-name">Grande Plage de Bidart</div>
+        <div class="activity-loc">À 10 min en voiture</div>
+        <p class="activity-desc">Plage familiale surveillée avec restaurants et parking.</p>
+        <div class="activity-tags"><span class="tag">Famille</span><span class="tag">Surveillée</span><span class="tag">Bidart</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2 — RANDONNÉE & NATURE -->
+<section class="activity-section-dark">
+  <div class="wrap">
+    <div class="rv">
+      <div class="ey">Nature</div>
+      <h2 class="t">Randonnée <em>&amp; nature</em></h2>
+    </div>
+    <div class="activity-grid">
+      <div class="activity-card rv">
+        <div class="activity-emoji">🥾</div>
+        <div class="activity-name">Sentier du littoral</div>
+        <div class="activity-loc">Départ depuis le village</div>
+        <p class="activity-desc">Randonnée côtière de Bidart à Saint-Jean-de-Luz en passant par Guéthary.</p>
+        <div class="activity-tags"><span class="tag">Randonnée</span><span class="tag">Littoral</span><span class="tag">Côtier</span></div>
+      </div>
+      <div class="activity-card rv d1">
+        <div class="activity-emoji">🚂</div>
+        <div class="activity-name">Le Petit Train de La Rhune</div>
+        <div class="activity-loc">À 25 min</div>
+        <p class="activity-desc">Train à crémaillère jusqu'au sommet (905m), panorama exceptionnel sur la côte et les Pyrénées.</p>
+        <div class="activity-tags"><span class="tag">Panorama</span><span class="tag">Train</span><span class="tag">Montagne</span></div>
+      </div>
+      <div class="activity-card rv">
+        <div class="activity-emoji">🏔️</div>
+        <div class="activity-name">Pyrénées</div>
+        <div class="activity-loc">À 1h–1h30</div>
+        <p class="activity-desc">Randonnées en montagne, gorges de Kakuetta, passerelle d'Holzarte.</p>
+        <div class="activity-tags"><span class="tag">Montagne</span><span class="tag">Gorges</span><span class="tag">Aventure</span></div>
+      </div>
+      <div class="activity-card rv d1">
+        <div class="activity-emoji">🌿</div>
+        <div class="activity-name">Forêt d'Iraty</div>
+        <div class="activity-loc">À 1h15</div>
+        <p class="activity-desc">Plus grande hêtraie d'Europe, randonnées et VTT.</p>
+        <div class="activity-tags"><span class="tag">Forêt</span><span class="tag">VTT</span><span class="tag">Randonnée</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3 — VILLAGES BASQUES -->
+<section class="activity-section">
+  <div class="wrap">
+    <div class="rv">
+      <div class="ey">Patrimoine</div>
+      <h2 class="t">Villages <em>basques</em></h2>
+    </div>
+    <div class="activity-grid">
+      <div class="activity-card rv">
+        <div class="activity-emoji">🌶️</div>
+        <div class="activity-name">Espelette</div>
+        <div class="activity-loc">À 25 min</div>
+        <p class="activity-desc">Village célèbre pour son piment, maisons à colombages ornées de guirlandes rouges.</p>
+        <div class="activity-tags"><span class="tag">Piment</span><span class="tag">Colombages</span><span class="tag">Gastronomie</span></div>
+      </div>
+      <div class="activity-card rv d1">
+        <div class="activity-emoji">🏘️</div>
+        <div class="activity-name">Ainhoa</div>
+        <div class="activity-loc">À 30 min</div>
+        <p class="activity-desc">Un des plus beaux villages de France, architecture basque traditionnelle.</p>
+        <div class="activity-tags"><span class="tag">Plus beau village</span><span class="tag">Architecture</span></div>
+      </div>
+      <div class="activity-card rv">
+        <div class="activity-emoji">⛪</div>
+        <div class="activity-name">Saint-Jean-Pied-de-Port</div>
+        <div class="activity-loc">À 50 min</div>
+        <p class="activity-desc">Cité médiévale, départ du chemin de Saint-Jacques-de-Compostelle.</p>
+        <div class="activity-tags"><span class="tag">Médiéval</span><span class="tag">Compostelle</span><span class="tag">Histoire</span></div>
+      </div>
+      <div class="activity-card rv d1">
+        <div class="activity-emoji">🎭</div>
+        <div class="activity-name">Bayonne</div>
+        <div class="activity-loc">À 25 min</div>
+        <p class="activity-desc">Cathédrale, chocolat, jambon de Bayonne, fêtes de Bayonne en juillet.</p>
+        <div class="activity-tags"><span class="tag">Cathédrale</span><span class="tag">Chocolat</span><span class="tag">Fêtes</span></div>
+      </div>
+      <div class="activity-card rv">
+        <div class="activity-emoji">🏰</div>
+        <div class="activity-name">Sare</div>
+        <div class="activity-loc">À 25 min</div>
+        <p class="activity-desc">Village labellisé, grottes préhistoriques, départ du train de La Rhune.</p>
+        <div class="activity-tags"><span class="tag">Grottes</span><span class="tag">La Rhune</span><span class="tag">Village</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4 — CULTURE & PATRIMOINE -->
+<section class="activity-section-dark">
+  <div class="wrap">
+    <div class="rv">
+      <div class="ey">Culture</div>
+      <h2 class="t">Culture <em>&amp; patrimoine</em></h2>
+    </div>
+    <div class="activity-grid">
+      <div class="activity-card rv">
+        <div class="activity-emoji">🤾</div>
+        <div class="activity-name">Pelote basque</div>
+        <div class="activity-loc">Matchs en été</div>
+        <p class="activity-desc">Sport emblématique, trinquets et frontons dans chaque village.</p>
+        <div class="activity-tags"><span class="tag">Sport</span><span class="tag">Tradition</span><span class="tag">Été</span></div>
+      </div>
+      <div class="activity-card rv d1">
+        <div class="activity-emoji">🐟</div>
+        <div class="activity-name">Aquarium de Biarritz</div>
+        <div class="activity-loc">À 15 min</div>
+        <p class="activity-desc">Musée de la Mer, requins, phoques, vue sur le Rocher de la Vierge.</p>
+        <div class="activity-tags"><span class="tag">Musée</span><span class="tag">Famille</span><span class="tag">Biarritz</span></div>
+      </div>
+      <div class="activity-card rv">
+        <div class="activity-emoji">🏛️</div>
+        <div class="activity-name">Villa Arnaga, Cambo</div>
+        <div class="activity-loc">À 20 min</div>
+        <p class="activity-desc">Demeure d'Edmond Rostand, jardins à la française.</p>
+        <div class="activity-tags"><span class="tag">Littérature</span><span class="tag">Jardins</span><span class="tag">Patrimoine</span></div>
+      </div>
+      <div class="activity-card rv d1">
+        <div class="activity-emoji">🎪</div>
+        <div class="activity-name">Fêtes de Bayonne</div>
+        <div class="activity-loc">À 25 min</div>
+        <p class="activity-desc">Plus grande fête populaire de France, fin juillet.</p>
+        <div class="activity-tags"><span class="tag">Fêtes</span><span class="tag">Juillet</span><span class="tag">Populaire</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5 — GASTRONOMIE -->
+<section class="activity-section">
+  <div class="wrap">
+    <div class="rv">
+      <div class="ey">Saveurs</div>
+      <h2 class="t">Gastronomie <em>basque</em></h2>
+    </div>
+    <div class="activity-grid">
+      <div class="activity-card rv">
+        <div class="activity-emoji">🧀</div>
+        <div class="activity-name">Fromage de brebis</div>
+        <div class="activity-loc">Villages de l'intérieur</div>
+        <p class="activity-desc">Ossau-Iraty, fromageries artisanales dans les villages de l'intérieur.</p>
+        <div class="activity-tags"><span class="tag">Fromage</span><span class="tag">Artisanal</span><span class="tag">Terroir</span></div>
+      </div>
+      <div class="activity-card rv d1">
+        <div class="activity-emoji">🌶️</div>
+        <div class="activity-name">Piment d'Espelette</div>
+        <div class="activity-loc">À 25 min</div>
+        <p class="activity-desc">Visite des séchoirs, ateliers de dégustation à Espelette.</p>
+        <div class="activity-tags"><span class="tag">Piment</span><span class="tag">Dégustation</span><span class="tag">Atelier</span></div>
+      </div>
+      <div class="activity-card rv">
+        <div class="activity-emoji">🐟</div>
+        <div class="activity-name">Marché de Saint-Jean-de-Luz</div>
+        <div class="activity-loc">À 15 min</div>
+        <p class="activity-desc">Mardi et vendredi matin, poissons frais, produits locaux.</p>
+        <div class="activity-tags"><span class="tag">Marché</span><span class="tag">Poisson</span><span class="tag">Produits locaux</span></div>
+      </div>
+      <div class="activity-card rv d1">
+        <div class="activity-emoji">🍫</div>
+        <div class="activity-name">Chocolat de Bayonne</div>
+        <div class="activity-loc">À 25 min</div>
+        <p class="activity-desc">Ateliers et musée du chocolat, tradition depuis le XVIIe siècle.</p>
+        <div class="activity-tags"><span class="tag">Chocolat</span><span class="tag">Musée</span><span class="tag">Tradition</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6 — ESPAGNE -->
+<section class="activity-section-dark">
+  <div class="wrap">
+    <div class="rv">
+      <div class="ey">De l'autre côté</div>
+      <h2 class="t">Espagne <em>&amp; Pays Basque sud</em></h2>
+    </div>
+    <div class="activity-grid">
+      <div class="activity-card rv">
+        <div class="activity-emoji">🇪🇸</div>
+        <div class="activity-name">Hondarribia</div>
+        <div class="activity-loc">À 30 min</div>
+        <p class="activity-desc">Village de pêcheurs coloré, pintxos, plage.</p>
+        <div class="activity-tags"><span class="tag">Pintxos</span><span class="tag">Village</span><span class="tag">Espagne</span></div>
+      </div>
+      <div class="activity-card rv d1">
+        <div class="activity-emoji">🍽️</div>
+        <div class="activity-name">San Sebastián</div>
+        <div class="activity-loc">À 45 min</div>
+        <p class="activity-desc">Capitale mondiale de la gastronomie, pintxos, plage de la Concha.</p>
+        <div class="activity-tags"><span class="tag">Gastronomie</span><span class="tag">Pintxos</span><span class="tag">Plage</span></div>
+      </div>
+      <div class="activity-card rv">
+        <div class="activity-emoji">🏛️</div>
+        <div class="activity-name">Bilbao &amp; Guggenheim</div>
+        <div class="activity-loc">À 1h30</div>
+        <p class="activity-desc">Musée d'art contemporain iconique, vieille ville.</p>
+        <div class="activity-tags"><span class="tag">Art</span><span class="tag">Musée</span><span class="tag">Architecture</span></div>
+      </div>
+      <div class="activity-card rv d1">
+        <div class="activity-emoji">🍷</div>
+        <div class="activity-name">La Rioja Alavesa</div>
+        <div class="activity-loc">À 2h</div>
+        <p class="activity-desc">Route des vins, bodegas d'architectes (Gehry, Calatrava).</p>
+        <div class="activity-tags"><span class="tag">Vin</span><span class="tag">Bodegas</span><span class="tag">Architecture</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7 — SPORTS & LOISIRS -->
+<section class="activity-section">
+  <div class="wrap">
+    <div class="rv">
+      <div class="ey">Détente</div>
+      <h2 class="t">Sports <em>&amp; loisirs</em></h2>
+    </div>
+    <div class="activity-grid">
+      <div class="activity-card rv">
+        <div class="activity-emoji">⛳</div>
+        <div class="activity-name">Golf</div>
+        <div class="activity-loc">À 10–20 min</div>
+        <p class="activity-desc">Golf d'Arcangues, Golf de Chiberta, parcours avec vue océan.</p>
+        <div class="activity-tags"><span class="tag">Golf</span><span class="tag">Vue océan</span><span class="tag">Sport</span></div>
+      </div>
+      <div class="activity-card rv d1">
+        <div class="activity-emoji">🧖</div>
+        <div class="activity-name">Thalasso</div>
+        <div class="activity-loc">À 15 min</div>
+        <p class="activity-desc">Thalassa Sea &amp; Spa Biarritz, soins marins.</p>
+        <div class="activity-tags"><span class="tag">Spa</span><span class="tag">Bien-être</span><span class="tag">Biarritz</span></div>
+      </div>
+      <div class="activity-card rv">
+        <div class="activity-emoji">🛶</div>
+        <div class="activity-name">Kayak &amp; Paddle</div>
+        <div class="activity-loc">Sur la côte</div>
+        <p class="activity-desc">Location sur la côte, balades le long des falaises.</p>
+        <div class="activity-tags"><span class="tag">Kayak</span><span class="tag">Paddle</span><span class="tag">Mer</span></div>
+      </div>
+      <div class="activity-card rv d1">
+        <div class="activity-emoji">🪂</div>
+        <div class="activity-name">Parapente</div>
+        <div class="activity-loc">Côte basque</div>
+        <p class="activity-desc">Vol au-dessus de la côte basque, baptêmes disponibles.</p>
+        <div class="activity-tags"><span class="tag">Parapente</span><span class="tag">Baptême</span><span class="tag">Vue aérienne</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="fl">Txorien Etxea · Guéthary</div>
+  <div class="fr">69 Chem. de la Laiterie · 64210 Guéthary<br/>© 2025 · Villa familiale</div>
+</footer>
+
+<script>
+const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in')}),{threshold:.08});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+</script>
+
+</body>
+</html>
